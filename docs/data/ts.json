@@ -16,13 +16,13 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 101,
+"kingdoms": 111,
 "done": false,
 "target": 300,
-"score": 0.6188118811881188,
-"lo": 0.5668316831683168,
-"hi": 0.6707920792079208,
-"secs": 262.9932673267327,
+"score": 0.5990990990990991,
+"lo": 0.5472972972972973,
+"hi": 0.6509009009009009,
+"secs": 258.287027027027,
 "override_rate": 0.0446,
 "act_override_rate": 0.0232
 },
@@ -69,15 +69,15 @@
 "stream": "ts1",
 "kingdoms": "200"
 },
-"kingdoms": 24,
+"kingdoms": 30,
 "done": false,
 "target": 200,
-"score": 0.625,
-"lo": 0.5208333333333334,
-"hi": 0.7395833333333334,
-"secs": 361.129375,
-"override_rate": null,
-"act_override_rate": null
+"score": 0.6166666666666667,
+"lo": 0.5083333333333333,
+"hi": 0.725,
+"secs": 373.24066666666664,
+"override_rate": 0.0466,
+"act_override_rate": 0.0244
 }
 ],
 "side": {
@@ -131,12 +131,12 @@
 },
 {
 "arm": "G_full_k128_sub",
-"kingdoms": 24,
-"diff": -0.0104,
-"lo": -0.125,
-"hi": 0.1042,
-"arm_score": 0.625,
-"base_score": 0.6354
+"kingdoms": 30,
+"diff": -0.0083,
+"lo": -0.1,
+"hi": 0.0833,
+"arm_score": 0.6167,
+"base_score": 0.625
 }
 ]
 }

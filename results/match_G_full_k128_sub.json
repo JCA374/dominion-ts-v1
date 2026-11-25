@@ -69,7 +69,85 @@
   },
   "games_sha": "bf34edc0e8ed47bd"
  },
- "t": "2026-11-25 11:47",
+ "t": "2026-11-25 13:11",
  "done": false,
- "games": 0
+ "wall_secs": 5070,
+ "latency_s": {
+  "decisions": 4756,
+  "p50": 2.8073,
+  "p95": 10.876
+ },
+ "action_overrides": {
+  "n": 62,
+  "mean_gain": 0.1047,
+  "top_changes": [
+   [
+    "Merchant -> end actions",
+    4
+   ],
+   [
+    "Throne Room -> end actions",
+    3
+   ],
+   [
+    "Throne Room -> Village",
+    2
+   ],
+   [
+    "Throne Room -> Remodel",
+    2
+   ],
+   [
+    "Smithy -> Moneylender",
+    2
+   ],
+   [
+    "Village -> Smithy",
+    2
+   ],
+   [
+    "Sentry -> end actions",
+    2
+   ],
+   [
+    "Merchant -> Sentry",
+    2
+   ],
+   [
+    "Village -> Market",
+    1
+   ],
+   [
+    "Throne Room -> Market",
+    1
+   ],
+   [
+    "Throne Room -> Bandit",
+    1
+   ],
+   [
+    "Sentry -> Poacher",
+    1
+   ]
+  ]
+ },
+ "games": 48,
+ "score": 0.625,
+ "ci95": [
+  0.5104,
+  0.7396
+ ],
+ "override_rate": 0.0466,
+ "secs_per_game": 361.13,
+ "rollouts": 2604416,
+ "capped": 0,
+ "errors": 0,
+ "pairs": 24,
+ "unpaired_games": 2,
+ "buy_overrides": 62,
+ "buys": 1330,
+ "act_graded": 2545,
+ "act_overrides": 62,
+ "act_override_rate": 0.0244,
+ "score_uncapped_pairs": 0.625
 }
