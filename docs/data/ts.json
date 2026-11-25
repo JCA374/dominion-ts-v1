@@ -16,13 +16,13 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 55,
+"kingdoms": 64,
 "done": false,
 "target": 300,
-"score": 0.6181818181818182,
-"lo": 0.5545454545454546,
-"hi": 0.6863636363636364,
-"secs": 249.5971818181818,
+"score": 0.625,
+"lo": 0.56640625,
+"hi": 0.6875,
+"secs": 247.344375,
 "override_rate": 0.0425,
 "act_override_rate": 0.0228
 },
@@ -43,15 +43,15 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 49,
+"kingdoms": 55,
 "done": false,
 "target": 300,
-"score": 0.6122448979591837,
-"lo": 0.5459183673469388,
-"hi": 0.6785714285714286,
-"secs": 270.92265306122454,
-"override_rate": 0.0457,
-"act_override_rate": 0.0329
+"score": 0.6272727272727273,
+"lo": 0.5636363636363636,
+"hi": 0.6910227272727266,
+"secs": 270.74745454545456,
+"override_rate": 0.045,
+"act_override_rate": 0.0271
 },
 {
 "name": "C_full_sh_k128",
@@ -198,12 +198,12 @@
 "rows": [
 {
 "arm": "B_leaf4_k640",
-"kingdoms": 49,
-"diff": 0.0,
-"lo": -0.0918,
-"hi": 0.0918,
-"arm_score": 0.6122,
-"base_score": 0.6122
+"kingdoms": 55,
+"diff": 0.0091,
+"lo": -0.0773,
+"hi": 0.0909,
+"arm_score": 0.6273,
+"base_score": 0.6182
 }
 ]
 }

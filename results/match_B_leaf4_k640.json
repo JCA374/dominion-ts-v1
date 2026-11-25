@@ -67,28 +67,56 @@
   },
   "games_sha": "e7669f6f2fc7cb51"
  },
- "t": "2026-11-25 10:29",
+ "t": "2026-11-25 11:21",
  "done": false,
- "wall_secs": 3687,
+ "wall_secs": 6810,
  "latency_s": {
-  "decisions": 3774,
-  "p50": 2.8029,
-  "p95": 9.3318
+  "decisions": 7857,
+  "p50": 2.5487,
+  "p95": 8.8138
  },
  "action_overrides": {
-  "n": 81,
-  "mean_gain": 0.0523,
+  "n": 142,
+  "mean_gain": 0.0528,
   "top_changes": [
+   [
+    "Poacher -> end actions",
+    4
+   ],
+   [
+    "Sentry -> Merchant",
+    4
+   ],
    [
     "Market -> end actions",
     4
+   ],
+   [
+    "Merchant -> Militia",
+    4
+   ],
+   [
+    "Sentry -> Militia",
+    4
+   ],
+   [
+    "Chapel -> end actions",
+    4
+   ],
+   [
+    "Vassal -> Militia",
+    4
+   ],
+   [
+    "Festival -> end actions",
+    3
    ],
    [
     "Festival -> Cellar",
     3
    ],
    [
-    "Sentry -> Merchant",
+    "Village -> Militia",
     3
    ],
    [
@@ -96,56 +124,28 @@
     3
    ],
    [
-    "Vassal -> Militia",
-    3
-   ],
-   [
     "Village -> end actions",
-    2
-   ],
-   [
-    "Sentry -> Cellar",
-    2
-   ],
-   [
-    "Sentry -> Poacher",
-    2
-   ],
-   [
-    "Festival -> end actions",
-    2
-   ],
-   [
-    "Poacher -> end actions",
-    2
-   ],
-   [
-    "Sentry -> Vassal",
-    2
-   ],
-   [
-    "Artisan -> Moneylender",
     2
    ]
   ]
  },
- "games": 48,
- "score": 0.5938,
+ "games": 100,
+ "score": 0.615,
  "ci95": [
-  0.5104,
-  0.6771
+  0.545,
+  0.685
  ],
- "override_rate": 0.0457,
- "secs_per_game": 288.13,
- "rollouts": 10157440,
+ "override_rate": 0.045,
+ "secs_per_game": 266.24,
+ "rollouts": 20912000,
  "capped": 0,
  "errors": 0,
- "pairs": 24,
- "unpaired_games": 2,
- "buy_overrides": 60,
- "buys": 1313,
- "act_graded": 2461,
- "act_overrides": 81,
- "act_override_rate": 0.0329,
- "score_uncapped_pairs": 0.5938
+ "pairs": 50,
+ "unpaired_games": 0,
+ "buy_overrides": 118,
+ "buys": 2625,
+ "act_graded": 5232,
+ "act_overrides": 142,
+ "act_override_rate": 0.0271,
+ "score_uncapped_pairs": 0.615
 }
