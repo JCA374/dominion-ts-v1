@@ -16,13 +16,13 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 71,
+"kingdoms": 73,
 "done": false,
 "target": 300,
-"score": 0.6338028169014085,
-"lo": 0.5704225352112676,
-"hi": 0.6971830985915493,
-"secs": 242.06690140845072,
+"score": 0.6301369863013698,
+"lo": 0.571917808219178,
+"hi": 0.6917808219178082,
+"secs": 254.1351369863014,
 "override_rate": 0.0425,
 "act_override_rate": 0.0228
 },
@@ -69,7 +69,7 @@
 "stream": "ts1",
 "kingdoms": "200"
 },
-"kingdoms": 0,
+"kingdoms": 4,
 "done": false,
 "target": 200
 }
