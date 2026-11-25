@@ -16,15 +16,15 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 199,
+"kingdoms": 206,
 "done": false,
 "target": 300,
-"score": 0.621859296482412,
-"lo": 0.5841708542713567,
-"hi": 0.6595477386934674,
-"secs": 304.4141959798995,
-"override_rate": 0.0433,
-"act_override_rate": 0.0229
+"score": 0.625,
+"lo": 0.5898058252427184,
+"hi": 0.6614381067961164,
+"secs": 307.1693203883495,
+"override_rate": 0.044,
+"act_override_rate": 0.0231
 },
 {
 "name": "B_leaf4_k640",
@@ -69,13 +69,13 @@
 "stream": "ts1",
 "kingdoms": "200"
 },
-"kingdoms": 94,
+"kingdoms": 96,
 "done": false,
 "target": 200,
-"score": 0.6595744680851063,
-"lo": 0.6063829787234043,
-"hi": 0.7127659574468085,
-"secs": 464.0622340425532,
+"score": 0.6588541666666666,
+"lo": 0.6067708333333334,
+"hi": 0.7109375,
+"secs": 465.1640104166667,
 "override_rate": 0.0388,
 "act_override_rate": 0.0234
 },
@@ -95,13 +95,13 @@
 "stream": "ts1",
 "kingdoms": "200"
 },
-"kingdoms": 7,
+"kingdoms": 10,
 "done": false,
 "target": 200,
-"score": 0.7857142857142857,
-"lo": 0.6428571428571429,
-"hi": 0.9285714285714286,
-"secs": 1679.2557142857145,
+"score": 0.7,
+"lo": 0.55,
+"hi": 0.85,
+"secs": 1426.892,
 "override_rate": null,
 "act_override_rate": null
 }
@@ -1239,6 +1239,191 @@
 }
 },
 "best_gate": "m0.0_z3.0"
+},
+"full320_sh": {
+"leaf": 0,
+"alloc": 1,
+"draws": 320,
+"secs_per_question": 13.955,
+"gates": {
+"m0.0_z0.0": {
+"regret": 0.00321,
+"regret_buy": 0.00582,
+"regret_action": 0.00183,
+"gain_vs_c2": 0.00563,
+"gain_ci": [
+0.00198,
+0.01113
+],
+"override_rate": 0.2625
+},
+"m0.0_z1.0": {
+"regret": 0.00311,
+"regret_buy": 0.00534,
+"regret_action": 0.00194,
+"gain_vs_c2": 0.00573,
+"gain_ci": [
+0.00223,
+0.01133
+],
+"override_rate": 0.1458
+},
+"m0.0_z2.0": {
+"regret": 0.00399,
+"regret_buy": 0.00644,
+"regret_action": 0.00269,
+"gain_vs_c2": 0.00485,
+"gain_ci": [
+0.00154,
+0.01035
+],
+"override_rate": 0.0639
+},
+"m0.0_z3.0": {
+"regret": 0.005,
+"regret_buy": 0.00829,
+"regret_action": 0.00327,
+"gain_vs_c2": 0.00384,
+"gain_ci": [
+0.00087,
+0.00917
+],
+"override_rate": 0.0333
+},
+"m0.01_z0.0": {
+"regret": 0.00292,
+"regret_buy": 0.00534,
+"regret_action": 0.00164,
+"gain_vs_c2": 0.00592,
+"gain_ci": [
+0.00231,
+0.01146
+],
+"override_rate": 0.1514
+},
+"m0.01_z1.0": {
+"regret": 0.00313,
+"regret_buy": 0.00533,
+"regret_action": 0.00197,
+"gain_vs_c2": 0.00571,
+"gain_ci": [
+0.0022,
+0.0113
+],
+"override_rate": 0.1153
+},
+"m0.01_z2.0": {
+"regret": 0.004,
+"regret_buy": 0.00644,
+"regret_action": 0.0027,
+"gain_vs_c2": 0.00484,
+"gain_ci": [
+0.00153,
+0.01034
+],
+"override_rate": 0.0611
+},
+"m0.01_z3.0": {
+"regret": 0.005,
+"regret_buy": 0.00829,
+"regret_action": 0.00327,
+"gain_vs_c2": 0.00384,
+"gain_ci": [
+0.00087,
+0.00917
+],
+"override_rate": 0.0333
+},
+"m0.02_z0.0": {
+"regret": 0.00321,
+"regret_buy": 0.00529,
+"regret_action": 0.00211,
+"gain_vs_c2": 0.00563,
+"gain_ci": [
+0.00216,
+0.01123
+],
+"override_rate": 0.1028
+},
+"m0.02_z1.0": {
+"regret": 0.00324,
+"regret_buy": 0.00529,
+"regret_action": 0.00215,
+"gain_vs_c2": 0.0056,
+"gain_ci": [
+0.00212,
+0.01121
+],
+"override_rate": 0.0972
+},
+"m0.02_z2.0": {
+"regret": 0.00406,
+"regret_buy": 0.00644,
+"regret_action": 0.00281,
+"gain_vs_c2": 0.00478,
+"gain_ci": [
+0.00149,
+0.01025
+],
+"override_rate": 0.0569
+},
+"m0.02_z3.0": {
+"regret": 0.00503,
+"regret_buy": 0.00829,
+"regret_action": 0.0033,
+"gain_vs_c2": 0.00381,
+"gain_ci": [
+0.00086,
+0.00915
+],
+"override_rate": 0.0319
+},
+"m0.04_z0.0": {
+"regret": 0.00408,
+"regret_buy": 0.00677,
+"regret_action": 0.00265,
+"gain_vs_c2": 0.00476,
+"gain_ci": [
+0.00145,
+0.01023
+],
+"override_rate": 0.0486
+},
+"m0.04_z1.0": {
+"regret": 0.00408,
+"regret_buy": 0.00677,
+"regret_action": 0.00265,
+"gain_vs_c2": 0.00476,
+"gain_ci": [
+0.00145,
+0.01023
+],
+"override_rate": 0.0486
+},
+"m0.04_z2.0": {
+"regret": 0.0042,
+"regret_buy": 0.00677,
+"regret_action": 0.00284,
+"gain_vs_c2": 0.00464,
+"gain_ci": [
+0.00131,
+0.01007
+],
+"override_rate": 0.0431
+},
+"m0.04_z3.0": {
+"regret": 0.00507,
+"regret_buy": 0.0084,
+"regret_action": 0.00331,
+"gain_vs_c2": 0.00377,
+"gain_ci": [
+0.00081,
+0.00909
+],
+"override_rate": 0.0278
+}
+},
+"best_gate": "m0.01_z0.0"
 }
 },
 "leaf_check": {
@@ -1291,12 +1476,21 @@
 },
 {
 "arm": "G_full_k128_sub",
-"kingdoms": 94,
-"diff": 0.0479,
-"lo": -0.0027,
-"hi": 0.0957,
-"arm_score": 0.6596,
-"base_score": 0.6117
+"kingdoms": 96,
+"diff": 0.0547,
+"lo": 0.0078,
+"hi": 0.1042,
+"arm_score": 0.6589,
+"base_score": 0.6042
+},
+{
+"arm": "H_full_k320_m01z1_sub",
+"kingdoms": 10,
+"diff": 0.0,
+"lo": -0.2,
+"hi": 0.2,
+"arm_score": 0.7,
+"base_score": 0.7
 }
 ]
 }
