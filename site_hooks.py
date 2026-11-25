@@ -10,6 +10,8 @@ sys.path.insert(0, ROOT)
 try:
     import track
     track.update()
+    import subprocess
+    subprocess.run([sys.executable, os.path.join(ROOT, "experiments", "compare.py")], capture_output=True)
 except Exception as ex:                        # never stop the publisher
     print("track.update failed:", ex)
 

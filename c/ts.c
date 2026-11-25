@@ -327,6 +327,13 @@ void bv_set_mix(int n, const int *mode, const float **prm, const int *nh, const 
  * 1 = fast in rollouts (default), 2 = fast in the main game as well (equivalence tests). */
 static int g_fast = 1;
 void bv_set_fast(int f) { g_fast = f; }
+/* ts-v1 card choices (ts_set_sub 1): a forced sequence for the grading player's first decisions in a rollout -- my
+ * choices since the action was played, then the candidate. A rollout that asks anything else of me first (the replay
+ * diverged) is an error: the decision is not graded. */
+#define TS_HIST 64
+static int g_fs_on, g_fs_me, g_fs_n, g_fs_i, g_fs_bad;
+static int g_fs_kind[TS_HIST + 1], g_fs_opt[TS_HIST + 1];
+
 /* ts-v1 leaves: D > 0 = a rollout stops at its first decision D turns (both players' turns counted) after the graded
  * one and scores (value + 1) / 2 of the rollout net, from the grading player's side; games that end sooner score
  * their result. 0 = to the end (bv-v1). Needs the fast continuation (g_fast >= 1) and net seats. */
@@ -338,6 +345,12 @@ long ts_leaf_cuts(void) { return g_leaf_cuts; }
 static int bv_fast_decide(void *ctx, const de_game *g, int kind, int me, int subject,
                           const int *opts, int n, int may_pass) {
     rl_seat *s = ctx;
+    if (g_fs_on && me == g_fs_me && g_fs_i < g_fs_n) {   /* replaying my choices, then the candidate */
+        int k = g_fs_i++, o = g_fs_opt[k], ok = kind == g_fs_kind[k] && ((o == -1 && may_pass) || 0);
+        for (int i = 0; i < n && !ok && kind == g_fs_kind[k]; i++) ok = opts[i] == o;
+        if (ok) return o;
+        g_fs_bad = 1; g_fs_on = 0;                       /* diverged: play on, the draw is thrown away */
+    }
     if (g_leaf_on) {                                   /* value-net leaf: the first decision D turns on scores it */
         if (g_leaf_hit) return may_pass ? -1 : opts[0];     /* the cut-off game only finishes its round, any legal move */
         if (g->p[0].turns + g->p[1].turns >= g_leaf_t0 + g_leaf_d) {
@@ -380,6 +393,16 @@ static void prepare(const de_game *g, int me, uint64_t seed, de_game *out) {
 }
 
 static int g_roll_kind = DE_BUY;    /* which decision the rollouts resume from: DE_BUY or DE_PLAY_ACTION */
+/* ts-v1 card choices: per seat, the game just before my last action play (the card still in hand), that card, the
+ * known-top count then, and my decisions since (kind, choice) */
+static int g_sub, g_sub_on, g_sub_kind;
+static de_game g_pre[2];
+static int g_snap_ok[2], g_snap_card[2], g_snap_known[2], g_nh[2], g_hk[2][TS_HIST], g_ho[2][TS_HIST];
+static long g_sub_stats[4];         /* graded, overrides, rejected (diverged / error), card choices seen */
+void ts_set_sub(int on) { g_sub = on; }
+void ts_sub_stats(long *o) { memcpy(o, g_sub_stats, sizeof g_sub_stats); }
+static long g_sub_rej[64], g_sub_seen[64];   /* per decision kind: rejected, seen */
+void ts_sub_kinds(long *rej, long *seen) { memcpy(rej, g_sub_rej, sizeof g_sub_rej); memcpy(seen, g_sub_seen, sizeof g_sub_seen); }
 static int g_fault;                 /* tests: every g_fault-th rollout reports an engine error (0 = off) */
 void bv_set_fault(int every) { g_fault = every; }
 static int g_last_cap, g_last_err;  /* the last rollout hit the round cap / an engine error */
@@ -393,7 +416,15 @@ static float rollout(const de_game *prepared, int me, int cand, uint64_t seed, i
     de_agent ag[2] = {{fn, &rs[0]}, {fn, &rs[1]}};
     g_leaf_on = g_leaf_d > 0 && g_fast; g_leaf_hit = 0; g_leaf_me = me;
     g_leaf_t0 = c.p[0].turns + c.p[1].turns;
-    if (g_roll_kind == DE_PLAY_ACTION) de_resume_action(&c, ag, cand == RL_PASS ? -1 : cand, 1);
+    if (g_sub_on) {                                    /* card choice: from before the action, replay, force cand */
+        memcpy(g_fs_kind, g_hk[me], sizeof(int) * g_nh[me]);
+        memcpy(g_fs_opt, g_ho[me], sizeof(int) * g_nh[me]);
+        g_fs_kind[g_nh[me]] = g_sub_kind; g_fs_opt[g_nh[me]] = cand == RL_PASS ? -1 : cand;
+        g_fs_n = g_nh[me] + 1; g_fs_i = 0; g_fs_bad = 0; g_fs_me = me; g_fs_on = 1;
+        de_resume_action(&c, ag, g_snap_card[me], 1);
+        if (g_fs_bad || g_fs_i < g_fs_n) c.error = 1;
+        g_fs_on = 0;
+    } else if (g_roll_kind == DE_PLAY_ACTION) de_resume_action(&c, ag, cand == RL_PASS ? -1 : cand, 1);
     else de_resume_buy(&c, ag, cand == RL_PASS ? -1 : cand);
     g_leaf_on = 0;
     g_rollouts++;
@@ -741,10 +772,66 @@ static int bv_decide_main(void *ctx, const de_game *g, int kind, int me, int sub
 }
 
 /* every live decision: public top-card tracking around the decision itself */
+/* The card choices graded (ts_set_sub 1): made inside my own action before any hidden card is seen, so a rollout from
+ * just before the action, replaying my choices, reaches the same decision exactly. */
+static int ts_sub_kind(int kind) {
+    return kind == DE_THRONE || kind == DE_CHAPEL_TRASH || kind == DE_CELLAR_DISCARD || kind == DE_MONEYLENDER_TRASH ||
+           kind == DE_MINE_TRASH || kind == DE_MINE_GAIN || kind == DE_REMODEL_TRASH || kind == DE_REMODEL_GAIN ||
+           kind == DE_WORKSHOP_GAIN || kind == DE_ARTISAN_GAIN || kind == DE_ARTISAN_TOPDECK;
+}
+
+static int ts_sub_decide(void *ctx, const de_game *g, int kind, int me, int subject, const int *opts, int n,
+                         int may_pass) {
+    rl_seat *s = ctx;
+    int ok[RL_NA] = {0};
+    for (int i = 0; i < n; i++) ok[opts[i]] = 1;
+    if (may_pass) ok[RL_PASS] = 1;
+    float x[RL_NF], lg[RL_NA], q[RL_NA], se[RL_NA];
+    rl_features(g, me, kind, subject, x);
+    rl_eval(s->prm, s->nh, s->nf, x, lg);
+    int inc = -1;
+    for (int a = 0; a < RL_NA; a++) if (ok[a] && (inc < 0 || lg[a] > lg[inc])) inc = a;
+    unsigned char mask[RL_NA], caps[RL_NA];
+    int keep_known = g_known, keep_kind = g_roll_kind;
+    g_known = g_snap_known[me];
+    g_roll_kind = DE_PLAY_ACTION;                      /* every legal option is a candidate */
+    g_sub_on = 1; g_sub_kind = kind;
+    double t0 = bv_now();
+    int K = bv_grade(&g_pre[me], me, ok, lg, inc, &s->rng, q, se, mask, caps);
+    g_sub_on = 0; g_known = keep_known; g_roll_kind = keep_kind;
+    if (g_nlat < 8192) g_lat[g_nlat++] = (float)(bv_now() - t0);
+    g_sub_stats[0] += K > 0;
+    g_sub_seen[kind & 63]++;
+    if (K < 0) { g_sub_stats[2]++; g_sub_rej[kind & 63]++; K = 0; }
+    int a = inc;
+    if (K) {
+        int b = inc;
+        for (int c = 0; c < RL_NA; c++) if (mask[c] && q[c] > q[b]) b = c;
+        if (b != inc && q[b] - q[inc] > g_cfg.margin && q[b] - q[inc] > g_z * se[b]) { a = b; g_sub_stats[1]++; }
+    }
+    return a == RL_PASS ? -1 : a;
+}
+
 static int bv_decide(void *ctx, const de_game *g, int kind, int me, int subject,
                      const int *opts, int n, int may_pass) {
     if (!g_in_plan) pub_observe(g);
-    int a = bv_decide_main(ctx, g, kind, me, subject, opts, n, may_pass);
+    int a;
+    rl_seat *s = ctx;
+    int sub = g_sub && !g_in_plan && g_bv_mode[me & 1] == 1 && s->mode == RL_NET;
+    if (sub && g_snap_ok[me] && ts_sub_kind(kind) && n + (may_pass != 0) >= 2 && g_nh[me] < TS_HIST) {
+        g_sub_stats[3]++;
+        a = ts_sub_decide(ctx, g, kind, me, subject, opts, n, may_pass);
+    } else a = bv_decide_main(ctx, g, kind, me, subject, opts, n, may_pass);
+    if (sub) {
+        if (kind == DE_PLAY_ACTION && g->current == me) {
+            g_snap_ok[me] = a >= 0;                     /* the next card choices hang off this play */
+            if (a >= 0) { g_pre[me] = *g; g_snap_card[me] = a; g_snap_known[me] = g_known; g_nh[me] = 0; }
+        } else if (kind == DE_BUY || g->current != me) g_snap_ok[me] = 0;
+        else if (g_snap_ok[me]) {
+            if (g_nh[me] < TS_HIST) { g_hk[me][g_nh[me]] = kind; g_ho[me][g_nh[me]] = a; g_nh[me]++; }
+            else g_snap_ok[me] = 0;
+        }
+    }
     if (!g_in_plan) { g_last_kind = kind; g_last_player = me; }
     return a;
 }
@@ -780,6 +867,7 @@ int bv_play(const int *mode, const float *prm0, const float *prm1, const int *nh
     g_kn_on = 1; g_kn_rng[0] = g_kn_rng[1] = 0; g_known = 0;
     memset(g_pub, 0, sizeof g_pub); g_pub_rng[0] = g_pub_rng[1] = 0; g_pub_n[0] = g_pub_n[1] = 0;
     g_last_kind = g_last_player = -1;
+    g_snap_ok[0] = g_snap_ok[1] = 0;
     de_run(&g, agents);
     g_kn_on = 0; g_known = 0;
     out[0] = de_winners(&g);

@@ -11,6 +11,7 @@ ap.add_argument("--games", type=int, default=6)
 ap.add_argument("--lib", default="ts", help="ts or bv")
 ap.add_argument("--leaf", type=int, default=0)
 ap.add_argument("--alloc", type=int, default=0)
+ap.add_argument("--sub", type=int, default=0)
 a = ap.parse_args()
 if a.lib == "bv":
     os.environ["BV_SO"] = os.path.join(ROOT, "build", "bv_ref.so")
@@ -20,7 +21,7 @@ if a.lib == "bv":
 else:
     from ts import lib
     core = lib.core
-    lib.configure(leaf=a.leaf, alloc=a.alloc, k0=16, k1=16, margin=0.02, z=2, act=1, obs=1)
+    lib.configure(leaf=a.leaf, alloc=a.alloc, sub=a.sub, k0=16, k1=16, margin=0.02, z=2, act=1, obs=1)
 rng = random.Random("ts-v1 equivalence")
 for i in range(a.games):
     k, seed = core.random_kingdom(rng), rng.getrandbits(32)
@@ -28,4 +29,5 @@ for i in range(a.games):
     r = core.play([core.seat_for("c2", k, 1), core.seat_for("c2", k)], k, seed, seed ^ 0x5EED)
     s1 = core.stats()
     print(json.dumps({"i": i, "scores": r["scores"], "turns": r["turns"],
-                      "rollouts": s1["rollouts"] - s0["rollouts"], "overrides": s1["overrides"] - s0["overrides"]}))
+                      "rollouts": s1["rollouts"] - s0["rollouts"], "overrides": s1["overrides"] - s0["overrides"],
+                      **({"sub": lib.sub_stats()} if a.lib == "ts" and a.sub else {})}))

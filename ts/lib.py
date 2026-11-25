@@ -38,11 +38,21 @@ lib.ts_set_leaf.argtypes = [ctypes.c_int]
 lib.ts_set_alloc.argtypes = [ctypes.c_int]
 lib.ts_leaf_cuts.restype = ctypes.c_long
 lib.ts_sh_final.restype = ctypes.c_long
+lib.ts_set_sub.argtypes = [ctypes.c_int]
+lib.ts_sub_stats.argtypes = [ctypes.POINTER(ctypes.c_long)]
 
 
-def configure(leaf=0, alloc=0, **kw):
+def configure(leaf=0, alloc=0, sub=0, **kw):
     """bv-v1's teacher settings (core.configure) + ts-v1's: leaf = turns before a value-net leaf (0 = to the end),
-    alloc = 0 uniform (bv-v1), 1 successive halving."""
+    alloc = 0 uniform (bv-v1), 1 successive halving, sub = 1 also grade card choices inside my own actions."""
     core.configure(**kw)
     lib.ts_set_leaf(int(leaf))
     lib.ts_set_alloc(int(alloc))
+    lib.ts_set_sub(int(sub))
+
+
+def sub_stats():
+    """Card choices since the library loaded: graded, overrides, rejected (replay diverged / error), seen."""
+    o = (ctypes.c_long * 4)()
+    lib.ts_sub_stats(o)
+    return dict(zip(["graded", "overrides", "rejected", "seen"], list(o)))

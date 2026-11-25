@@ -1,0 +1,2 @@
+{"time": "2026-11-25T09:35:27", "stage": "speech-flow", "script": "scan.py", "args": ["voice/podcast-01/ch01.md"], "ok": true, "inputs": {"ch01.md": "b5cf37f50fb685bcc455fe51c091b8e9620178d0"}, "outputs": {}, "candidates": {"ch01": 0}}
+{"time": "2026-11-25T09:45:55", "stage": "narration-prep", "script": "prep.py", "args": ["voice/podcast-01"], "ok": true, "inputs": {"ch01.md": "b5cf37f50fb685bcc455fe51c091b8e9620178d0", "glossary.md": "e57ddb82cada9f875f3e395e596cf3c8932e9004"}, "outputs": {"audio/ch01.txt": "78b048f7c5d747b4d818a7cecc0ec7d8900524a3"}, "chapters": 1}

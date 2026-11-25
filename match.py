@@ -31,7 +31,7 @@ def init(a):
     from ts import lib
     _A.update(a)
     st = np.load(a["student"]).astype(np.float32) if a["student"] else None
-    lib.configure(leaf=a["leaf"], alloc=a["alloc"], k0=a["k0"], k1=a["k1"], se_mult=a["se"], topn=a["topn"],
+    lib.configure(leaf=a["leaf"], alloc=a["alloc"], sub=a["sub"], k0=a["k0"], k1=a["k1"], se_mult=a["se"], topn=a["topn"],
                   margin=a["margin"], student=st, z=a["z"], act=a["act"], obs=a["obs"], kval=a["kval"])
 
 
@@ -51,7 +51,13 @@ def job(g):
     prev = _A.setdefault("_act", [0] * 5)
     dact = [x - y for x, y in zip(act, prev)]
     _A["_act"] = act
-    return {**g, "act_graded": dact[0], "act_overrides": dact[1], "act_play_not_stop": dact[2],
+    from ts import lib as _l
+    sub = _l.sub_stats()
+    sprev = _A.setdefault("_sub", {k: 0 for k in sub})
+    dsub = {k: sub[k] - sprev[k] for k in sub}
+    _A["_sub"] = sub
+    return {**g, "sub_graded": dsub["graded"], "sub_overrides": dsub["overrides"], "sub_rejected": dsub["rejected"],
+            "act_graded": dact[0], "act_overrides": dact[1], "act_play_not_stop": dact[2],
             "act_stop_not_play": dact[3], "act_other_action": dact[4],
             "lat": [round(float(x), 5) for x in core.latencies()],
             "act_log": [[round(float(v), 4) for v in row] for row in core.action_log()], "points": core.points(r, s), "secs": round(time.time() - t, 2), "capped": r["capped"],
@@ -145,6 +151,7 @@ def main():
     ap.add_argument("--kval", type=int, default=0, help="validation draws for an override")
     ap.add_argument("--leaf", type=int, default=0, help="turns before a value-net leaf (0: rollouts to the end)")
     ap.add_argument("--alloc", type=int, default=0, help="0 uniform draws, 1 successive halving (same budget)")
+    ap.add_argument("--sub", type=int, default=0, help="1: also grade card choices inside my actions (gains, trashes)")
     ap.add_argument("--kingdoms", type=int, default=200)
     ap.add_argument("--workers", type=int, default=6)
     a = vars(ap.parse_args())

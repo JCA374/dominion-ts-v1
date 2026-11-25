@@ -8,6 +8,8 @@
 --name C_full_sh_k128 --act 1 --k0 128 --k1 128 --alloc 1 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
 # D: value-net leaves after 4 turns + successive halving, the same time as A
 --name D_leaf4_sh_k640 --act 1 --k0 640 --k1 640 --leaf 4 --alloc 1 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
+# G: B + the teacher also grades card choices inside my own actions (Workshop / Artisan / Remodel / Mine gains, trashes, Throne Room, Cellar)
+--name G_leaf4_k640_sub --act 1 --k0 640 --k1 640 --leaf 4 --sub 1 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
 # E: value-net leaves after 8 turns, 2.5x the draws of A in the same time
 --name E_leaf8_k320 --act 1 --k0 320 --k1 320 --leaf 8 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
 # F: value-net leaves after 2 turns, 8x the draws of A (cheaper than A per question)

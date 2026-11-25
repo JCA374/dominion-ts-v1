@@ -1,0 +1,14 @@
+title: 'Episode 01: Four days to sharpen the teacher'
+kind: prose
+author: ''
+narrator: Kokoro TTS (af_heart)
+narration:
+  narrator: af_heart
+  speed: 0.95
+  paragraph_pause: 0.6
+chapters:
+  ch01: 'Episode 01: Four days to sharpen the teacher'
+sources:
+  ch01:
+    path: /home/jonas/code/games/dominion/trainers/ts-v1/podcast/episode-01.md
+    sha1: b5cf37f50fb685bcc455fe51c091b8e9620178d0
