@@ -9,11 +9,40 @@
 <body>
 <main>
 <h1>Speed</h1>
-<p class="lede">Machine: a 4-core / 8-thread laptop CPU, 7 GB RAM, no GPU. All search code is C
-(<code>c/ts.c</code> + the engine), called through ctypes. A rollout to the end costs ~1.6 ms alone and 3-13 ms when every core
-is busy. Value-net leaves after D = 2 / 4 / 8 turns cost 0.08 / 0.20 / 0.39 of a full rollout (results/leaf_check.json,
-4 games of graded buys, 128 draws). Advisor teacher, one question at turn 1 with 1 s: 1 process 25 draws, 3 processes 59
-(2.4×; the laptop has 4 real cores and the game needs one).</p>
+<p class="lede">Machine: a 4-core / 8-thread laptop CPU (Intel i5-8250U: 256 KB L2 per core, 6 MB L3; AVX2, FMA,
+F16C), 7 GB RAM, no GPU. All search code is C (<code>c/ts.c</code> + the engine), called through ctypes. Every number
+below is measured, the benchmark is <code>experiments/speed/bench.c</code> (teacher-label games of c2 vs c2; it prints a
+checksum of every graded value), and each change was checked bit for bit: same checksum, and whole teacher games
+identical to bv-v1's untouched library (<code>experiments/equiv.py</code>).</p>
+
+<section><h2>Where a rollout's time goes</h2>
+<div class="tablewrap"><table><tr><th>part</th><th>start</th><th>after the feature rewrite</th><th>after register blocking</th></tr>
+<tr><td>c2's forward pass (two 256-wide layers)</td><td>61%</td><td>77%</td><td>57% (blocked kernel) + part of 18%</td></tr>
+<tr><td>helper features (draw distributions, scores)</td><td>37%</td><td>19%</td><td>~20%</td></tr>
+<tr><td>the game engine itself</td><td>~3%</td><td>~3%</td><td>~3%</td></tr></table></div>
+<p class="muted small">gprof flat profiles (perf is not allowed on this machine). The engine was never the problem: a
+different language for it could save at most 3%.</p></section>
+
+<section><h2>What was changed, and what it gave</h2>
+<div class="tablewrap"><table><tr><th>step</th><th>what</th><th>exact?</th><th>rollouts/s (same load)</th></tr>
+<tr><td>start</td><td>bv-v1's teacher (fastnet: transposed weights, zero inputs skipped)</td><td>–</td><td>66</td></tr>
+<tr><td>1</td><td><code>draw_dist</code> over reachable cells only, binomials once; the hand convolution over non-zero terms (rl-v3); <code>de_score</code> in one pass (engine)</td><td>yes, identical doubles and integers</td><td>97</td></tr>
+<tr><td>2</td><td>register blocking: 64 hidden sums kept in 8 AVX registers over all active inputs, no store/reload per input</td><td>yes, the same FMAs in the same order</td><td>112</td></tr>
+<tr><td>tried, dropped</td><td>float16 weights (F16C): half the bytes read</td><td>no</td><td>+7% only: the kernel was not memory-bound</td></tr></table></div></section>
+
+<section><h2>On an idle machine</h2>
+<div class="tablewrap"><table><tr><th>processes</th><th>before (rollouts/s)</th><th>after</th><th>speed-up</th></tr>
+<tr><td>1</td><td>350</td><td>553</td><td>1.58×</td></tr>
+<tr><td>4 (total)</td><td>1,101</td><td>1,747</td><td>1.59×</td></tr>
+<tr><td>8 (total, before the changes)</td><td>1,020</td><td>–</td><td>hyperthreads add nothing</td></tr></table></div>
+<p>So the laptop does at most ~4 processes' worth of rollouts, and the same games now cost 1.6× less. For the advisor
+that is ~60% more draws in its 3 seconds; the decision bank says more draws lower the teacher's regret.</p></section>
+
+<section><h2>Other measurements</h2>
+<p>Value-net leaves after D = 2 / 4 / 8 turns cost 0.08 / 0.20 / 0.39 of a full rollout (they were dropped for bias,
+not speed). Advisor teacher with 3 processes: 2.4× the draws of one process in the same second (idle).</p>
+<p>Not done: running many rollouts in lockstep so one pass over the weights serves 32 games (would cut the 57% kernel
+share further, but every rollout would have to become a coroutine).</p></section>
 </main>
 <script src="site.js?v=a8f18eb9"></script>
 <script src="common.js?v=cf5d53e1"></script>

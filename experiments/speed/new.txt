@@ -1,0 +1,1 @@
+4592 rollouts, 42 states in 51.94 s: 88 rollouts/s, 0.81 states/s, checksum 21.187500
