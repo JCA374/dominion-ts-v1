@@ -12,12 +12,12 @@
   },
   {
    "arm": "G_full_k128_sub",
-   "kingdoms": 89,
-   "diff": 0.0618,
-   "lo": 0.0112,
-   "hi": 0.1096,
-   "arm_score": 0.6685,
-   "base_score": 0.6067
+   "kingdoms": 94,
+   "diff": 0.0479,
+   "lo": -0.0027,
+   "hi": 0.0957,
+   "arm_score": 0.6596,
+   "base_score": 0.6117
   }
  ]
 }
