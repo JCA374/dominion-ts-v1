@@ -1,0 +1,76 @@
+{
+ "name": "I_full_k320_sh_m01z1_sub",
+ "args": {
+  "name": "I_full_k320_sh_m01z1_sub",
+  "base": "c2",
+  "bv": 1,
+  "opp": "c2",
+  "k0": 320,
+  "k1": 320,
+  "se": 1.5,
+  "topn": 5,
+  "margin": 0.01,
+  "student": "",
+  "z": 1.0,
+  "act": 1,
+  "resume": false,
+  "same_results_sources": false,
+  "stream": "ts1",
+  "games": "",
+  "obs": 1,
+  "kval": 0,
+  "leaf": 0,
+  "alloc": 1,
+  "sub": 1,
+  "kingdoms": 200,
+  "workers": 7
+ },
+ "manifest": {
+  "name": "I_full_k320_sh_m01z1_sub",
+  "base": "c2",
+  "bv": 1,
+  "opp": "c2",
+  "k0": 320,
+  "k1": 320,
+  "se": 1.5,
+  "topn": 5,
+  "margin": 0.01,
+  "student": "",
+  "z": 1.0,
+  "act": 1,
+  "stream": "ts1",
+  "games": "",
+  "obs": 1,
+  "kval": 0,
+  "leaf": 0,
+  "alloc": 1,
+  "sub": 1,
+  "kingdoms": 200,
+  "models": {
+   "rl3_c2_2654.npy": "0018fb85b6cc87ec",
+   "rl3_c1_2300.npy": "daae8a0049b13346",
+   "rl1_r2_2200.npy": "47ed00b6f7cfa628"
+  },
+  "seat_sha": {
+   "base": "0018fb85b6cc87ec",
+   "opp": "0018fb85b6cc87ec"
+  },
+  "student_sha": null,
+  "sources": {
+   "engine/c/engine.c": "abe405c48d615029",
+   "c/ts.c": "a4c6c9823fbea8dd",
+   "c/fastnet.h": "53b21758dc9cb277",
+   "rl-v3/c/rl.c": "92a923662766625c",
+   "rl-v3/az-v1/c/az.c": "1777b8ee4dcbb079",
+   "engine/c/engine.h": "946bbed5cf1e4a89"
+  },
+  "library": {
+   "path": "ts.so",
+   "sha": "ed3f9803bf9526c1"
+  },
+  "games_sha": "bf34edc0e8ed47bd"
+ },
+ "t": "2026-11-25 18:50",
+ "done": false,
+ "games": 0
+}

@@ -16,13 +16,13 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 213,
+"kingdoms": 216,
 "done": false,
 "target": 300,
-"score": 0.6291079812206573,
-"lo": 0.5915492957746479,
-"hi": 0.6654929577464789,
-"secs": 315.3482863849765,
+"score": 0.625,
+"lo": 0.5879629629629629,
+"hi": 0.6597222222222222,
+"secs": 313.3919907407407,
 "override_rate": 0.044,
 "act_override_rate": 0.0231
 },
@@ -69,13 +69,13 @@
 "stream": "ts1",
 "kingdoms": "200"
 },
-"kingdoms": 105,
+"kingdoms": 111,
 "done": false,
 "target": 200,
-"score": 0.6595238095238095,
-"lo": 0.6071428571428571,
-"hi": 0.7095238095238096,
-"secs": 472.9799047619048,
+"score": 0.6509009009009009,
+"lo": 0.6036036036036037,
+"hi": 0.6981981981981982,
+"secs": 462.7461261261261,
 "override_rate": 0.0375,
 "act_override_rate": 0.0226
 },
@@ -95,15 +95,36 @@
 "stream": "ts1",
 "kingdoms": "200"
 },
-"kingdoms": 11,
+"kingdoms": 12,
 "done": false,
 "target": 200,
-"score": 0.6818181818181818,
-"lo": 0.5454545454545454,
-"hi": 0.8181818181818182,
-"secs": 1386.4836363636364,
+"score": 0.6666666666666666,
+"lo": 0.5416666666666666,
+"hi": 0.7916666666666666,
+"secs": 1384.7358333333334,
 "override_rate": null,
 "act_override_rate": null
+},
+{
+"name": "I_full_k320_sh_m01z1_sub",
+"note": "I: the teacher the advisor now runs -- 320 draws (3 processes), successive halving, gate margin 0.01 / z 1, card choices",
+"args": {
+"name": "I_full_k320_sh_m01z1_sub",
+"act": "1",
+"k0": "320",
+"k1": "320",
+"alloc": "1",
+"sub": "1",
+"margin": "0.01",
+"z": "1",
+"obs": "1",
+"opp": "c2",
+"stream": "ts1",
+"kingdoms": "200"
+},
+"kingdoms": 0,
+"done": false,
+"target": 200
 }
 ],
 "side": {
@@ -1476,21 +1497,21 @@
 },
 {
 "arm": "G_full_k128_sub",
-"kingdoms": 105,
-"diff": 0.0548,
-"lo": 0.0024,
-"hi": 0.1071,
-"arm_score": 0.6595,
-"base_score": 0.6048
+"kingdoms": 111,
+"diff": 0.0518,
+"lo": 0.0023,
+"hi": 0.1014,
+"arm_score": 0.6509,
+"base_score": 0.5991
 },
 {
 "arm": "H_full_k320_m01z1_sub",
-"kingdoms": 11,
-"diff": 0.0,
-"lo": -0.1818,
-"hi": 0.1818,
-"arm_score": 0.6818,
-"base_score": 0.6818
+"kingdoms": 12,
+"diff": 0.0208,
+"lo": -0.1667,
+"hi": 0.1875,
+"arm_score": 0.6667,
+"base_score": 0.6458
 }
 ]
 }

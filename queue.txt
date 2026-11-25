@@ -1,7 +1,7 @@
 # match arms, run in order by experiments/run_queue.py (unit ts-queue). Common: teacher on buys + actions (act 1), public
 # sampler (obs 1, as the advisor), margin 0.02, z 2, vs frozen c2, stream ts1 (fresh kingdoms), both seats.
 # A: today's advisor teacher (128 draws, rollouts to the end)
---name A_full_k128 --act 1 --k0 128 --k1 128 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 300 --workers 7
+#stopped --name A_full_k128 --act 1 --k0 128 --k1 128 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 300 --workers 7
 # B: value-net leaves after 4 turns, 5x the draws in about the same time
 #stopped --name B_leaf4_k640 --act 1 --k0 640 --k1 640 --leaf 4 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 300 --workers 7
 # C: successive halving, rollouts to the end, the same budget as A (128 draws per option on average)
@@ -15,4 +15,6 @@
 # F: value-net leaves after 2 turns, 8x the draws of A (cheaper than A per question)
 #dropped --name F_leaf2_k1024 --act 1 --k0 1024 --k1 1024 --leaf 2 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
 # H: the deployment candidate -- the advisor with 3 processes (~320 draws), the gate the bank chose (margin 0.01, z 1), card choices
---name H_full_k320_m01z1_sub --act 1 --k0 320 --k1 320 --sub 1 --margin 0.01 --z 1 --obs 1 --opp c2 --stream ts1 --kingdoms 200 --same-results-sources
+#stopped --name H_full_k320_m01z1_sub --act 1 --k0 320 --k1 320 --sub 1 --margin 0.01 --z 1 --obs 1 --opp c2 --stream ts1 --kingdoms 200 --same-results-sources
+# I: the teacher the advisor now runs -- 320 draws (3 processes), successive halving, gate margin 0.01 / z 1, card choices
+--name I_full_k320_sh_m01z1_sub --act 1 --k0 320 --k1 320 --alloc 1 --sub 1 --margin 0.01 --z 1 --obs 1 --opp c2 --stream ts1 --kingdoms 200
