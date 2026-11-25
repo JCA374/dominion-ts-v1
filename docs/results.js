@@ -18,6 +18,15 @@ get('ts.json').then((d) => {
       tbl(['leaf after', 'seconds', 'cost vs full', 'level correlation', 'within-position correlation', 'same best option'],
         Object.entries(L).filter(([k]) => k !== 'full').map(([k, v]) => [k.replace('leaf', '') + ' turns', v.secs, (v.secs / L.full.secs).toFixed(2) + '×', v.corr_level, v.corr_within, pct(v.best_same)]));
   }
-  for (const [k, v] of Object.entries(S)) if (k !== 'leaf_check' && k !== 'paired' && v && v.summary) h += `<h3>${esc(k)}</h3><p>${esc(v.summary)}</p>`;
+  if (S.bank) h += `<h3>Decision bank</h3><p>${esc(S.bank.summary)}. ${S.bank.buys} buys, ${S.bank.actions} action plays from ${S.bank.games} c2-vs-c2 games; truth = ${S.bank.truth_draws} rollouts to the end per option.</p>`;
+  const E = S.bank_eval;
+  if (E) {
+    const rows = Object.entries(E).filter(([k, v]) => v && v.gates);
+    h += '<h3>Teacher settings on the bank</h3><p class="muted small">Regret = points of win chance a choice gives up against the truth, per decision (lower is better), mean of 3 repetitions. "Today\'s gate" = margin 0.02, z 2. Seconds per question measured with the machine busy (compare them with each other only).</p>' +
+      tbl(['setting', 'leaf', 'halving', 'draws', 's / question', 'regret, today\'s gate', 'gain over c2', 'overrides', 'best gate', 'regret there'],
+        [['c2 alone', '', '', '', '', (100 * E.c2.regret).toFixed(2), '–', '0', '', '']].concat(rows.map(([k, v]) => { const g = v.gates['m0.02_z2.0'], b = v.gates[v.best_gate];
+          return [`<code>${esc(k)}</code>`, v.leaf || 'end', v.alloc ? 'yes' : 'no', v.draws, v.secs_per_question, (100 * g.regret).toFixed(2), `${(100 * g.gain_vs_c2).toFixed(2)} [${(100 * g.gain_ci[0]).toFixed(2)}, ${(100 * g.gain_ci[1]).toFixed(2)}]`, pct(g.override_rate), esc(v.best_gate), (100 * b.regret).toFixed(2)]; })));
+  }
+  for (const [k, v] of Object.entries(S)) if (!['leaf_check', 'paired', 'bank', 'bank_eval'].includes(k) && v && v.summary) h += `<h3>${esc(k)}</h3><p>${esc(v.summary)}</p>`;
   $('side').innerHTML = h || '<p class="muted">None yet.</p>';
 });
