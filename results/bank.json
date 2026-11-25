@@ -1,0 +1,16 @@
+{
+ "positions": 240,
+ "buys": 83,
+ "actions": 157,
+ "with_choice_in_games": {
+  "0": 1867,
+  "1": 951
+ },
+ "games": 40,
+ "truth_draws": 2048,
+ "c2_regret": 0.0088,
+ "c2_best_share": 0.65,
+ "truth_split_regret": 0.0021,
+ "secs": 7780,
+ "summary": "240 positions; c2's own pick gives up 0.88 points of win chance on average against 2,048-draw truth"
+}

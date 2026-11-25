@@ -16,15 +16,15 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 123,
+"kingdoms": 129,
 "done": false,
 "target": 300,
-"score": 0.6016260162601627,
-"lo": 0.5548780487804879,
-"hi": 0.6463414634146342,
-"secs": 260.8158943089431,
-"override_rate": 0.0446,
-"act_override_rate": 0.0232
+"score": 0.6124031007751938,
+"lo": 0.5658914728682171,
+"hi": 0.6569767441860465,
+"secs": 265.01996124031007,
+"override_rate": 0.0453,
+"act_override_rate": 0.0234
 },
 {
 "name": "B_leaf4_k640",
@@ -69,18 +69,34 @@
 "stream": "ts1",
 "kingdoms": "200"
 },
-"kingdoms": 36,
+"kingdoms": 41,
 "done": false,
 "target": 200,
-"score": 0.6388888888888888,
-"lo": 0.5486111111111112,
-"hi": 0.7291666666666666,
-"secs": 392.0130555555555,
+"score": 0.6585365853658537,
+"lo": 0.5670731707317073,
+"hi": 0.7439024390243902,
+"secs": 420.10878048780484,
 "override_rate": 0.0466,
 "act_override_rate": 0.0244
 }
 ],
 "side": {
+"bank": {
+"positions": 240,
+"buys": 83,
+"actions": 157,
+"with_choice_in_games": {
+"0": 1867,
+"1": 951
+},
+"games": 40,
+"truth_draws": 2048,
+"c2_regret": 0.0088,
+"c2_best_share": 0.65,
+"truth_split_regret": 0.0021,
+"secs": 7780,
+"summary": "240 positions; c2's own pick gives up 0.88 points of win chance on average against 2,048-draw truth"
+},
 "leaf_check": {
 "full": {
 "secs": 141.9,
@@ -131,12 +147,12 @@
 },
 {
 "arm": "G_full_k128_sub",
-"kingdoms": 36,
-"diff": 0.0139,
-"lo": -0.0625,
-"hi": 0.0903,
-"arm_score": 0.6389,
-"base_score": 0.625
+"kingdoms": 41,
+"diff": 0.0244,
+"lo": -0.0549,
+"hi": 0.1098,
+"arm_score": 0.6585,
+"base_score": 0.6341
 }
 ]
 }
