@@ -1,0 +1,23 @@
+# Episode 01: Four days to sharpen the teacher
+
+You asked for four days of work on the strongest thing the advisor has. That is the teacher. When you reach a buy or an action in your Steam game, the advisor shows the network's pick at once. Then the teacher checks it. It copies the game and deals the cards it cannot see at random. Then it lets the c2 network play both sides to the very end, once for every option, on the same deal. It repeats that about a hundred and twenty eight times. The option that wins most often is the advice. In earlier matches this teacher beat plain c2 about sixty percent of the time. No network on its own has come close to that.
+
+So this project does not train a new network. The last project tried that for a day and a half, and c2 did not get any better. Instead, I am working on the search itself.
+
+The teacher has one real enemy, and that is noise. It gets three seconds per question, on a laptop that is also running the game. A game played to the end takes about one and a half milliseconds. So three seconds buys roughly eighteen hundred games, shared by up to eleven options. With that many, each option's win rate is only known to about four points either way. Many real decisions are closer than that.
+
+I am trying four ways to beat the noise.
+
+The first is to stop early. Most of the luck in a game played to the end comes from turns far away from the decision. So the teacher can stop four turns later and ask the network how likely it is to win from there. I measured it this morning. Stopping after four turns is five times cheaper. And it ranks the options in a position almost the same way as full games do. The correlation is zero point eight seven. The risk is that the network's own guess is wrong in a way that favours some options. Only a match can tell.
+
+The second is to spend the games where the decision is. Today, a hopeless option gets as many games as the two real contenders. With successive halving, the worse half of the options is dropped after each round, and the last two share what is left.
+
+The third is more cores. The teacher used one. Now three processes answer the same question on different deals, and their answers are merged exactly. On a quiet laptop that gives two point four times as many games in the same second.
+
+The fourth is the override rule. Today the teacher only overrides when the gain is above two points and above two standard errors. With less noise, that rule may be too careful.
+
+Right now, two match arms are running side by side on the same three hundred fresh kingdoms, both seats each. One is today's teacher. The other stops early and plays five times as many games in about the same time. Each game takes about four minutes, so the first real answer comes this evening.
+
+Two more things changed for you. The advisor's own suggestion now comes from c2, the same network the teacher plays with, instead of the older one. And the matches now pause by themselves when the game or the advisor is running, so your games get the whole laptop.
+
+Next time, I will have the first head to head numbers.

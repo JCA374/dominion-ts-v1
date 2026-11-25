@@ -1,0 +1,5 @@
+["Goal: a stronger advisor teacher inside the same 3-second budget, 4 days",
+ "Value-net leaves after 4 turns: 5x cheaper, within-position correlation 0.87 with full rollouts",
+ "3 processes pool their draws exactly: 2.4x draws per second on an idle laptop",
+ "Arms running: today's teacher (128 draws) vs leaves (640 draws), 300 kingdoms x 2 seats vs c2",
+ "Advisor now uses c2 for its own suggestion; matches pause while you play"]
