@@ -12,7 +12,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 CONFIGS = {   # name: (leaf, alloc, draws per option)
     "full32": (0, 0, 32), "full128": (0, 0, 128), "full320": (0, 0, 320),
-    "full128_sh": (0, 1, 128),
+    "full128_sh": (0, 1, 128), "full320_sh": (0, 1, 320), "full640": (0, 0, 640),
     "leaf2_400": (2, 0, 400), "leaf2_1600": (2, 0, 1600),
     "leaf4_160": (4, 0, 160), "leaf4_640": (4, 0, 640), "leaf4_1600": (4, 0, 1600), "leaf4_640_sh": (4, 1, 640),
     "leaf8_320": (8, 0, 320), "leaf8_800": (8, 0, 800),
