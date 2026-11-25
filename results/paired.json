@@ -3,12 +3,12 @@
  "rows": [
   {
    "arm": "B_leaf4_k640",
-   "kingdoms": 55,
-   "diff": 0.0091,
-   "lo": -0.0773,
-   "hi": 0.0909,
-   "arm_score": 0.6273,
-   "base_score": 0.6182
+   "kingdoms": 61,
+   "diff": -0.0082,
+   "lo": -0.1025,
+   "hi": 0.0821,
+   "arm_score": 0.6148,
+   "base_score": 0.623
   }
  ]
 }

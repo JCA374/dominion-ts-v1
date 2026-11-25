@@ -1,16 +1,16 @@
-# match arms, run in order by experiments/queue.py (unit ts-queue). Common: teacher on buys + actions (act 1), public
+# match arms, run in order by experiments/run_queue.py (unit ts-queue). Common: teacher on buys + actions (act 1), public
 # sampler (obs 1, as the advisor), margin 0.02, z 2, vs frozen c2, stream ts1 (fresh kingdoms), both seats.
 # A: today's advisor teacher (128 draws, rollouts to the end)
 --name A_full_k128 --act 1 --k0 128 --k1 128 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 300 --workers 7
 # B: value-net leaves after 4 turns, 5x the draws in about the same time
---name B_leaf4_k640 --act 1 --k0 640 --k1 640 --leaf 4 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 300 --workers 7
+#stopped --name B_leaf4_k640 --act 1 --k0 640 --k1 640 --leaf 4 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 300 --workers 7
 # C: successive halving, rollouts to the end, the same budget as A (128 draws per option on average)
---name C_full_sh_k128 --act 1 --k0 128 --k1 128 --alloc 1 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
+#dropped --name C_full_sh_k128 --act 1 --k0 128 --k1 128 --alloc 1 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
 # D: value-net leaves after 4 turns + successive halving, the same time as A
---name D_leaf4_sh_k640 --act 1 --k0 640 --k1 640 --leaf 4 --alloc 1 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
-# G: B + the teacher also grades card choices inside my own actions (Workshop / Artisan / Remodel / Mine gains, trashes, Throne Room, Cellar)
---name G_leaf4_k640_sub --act 1 --k0 640 --k1 640 --leaf 4 --sub 1 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
+#dropped --name D_leaf4_sh_k640 --act 1 --k0 640 --k1 640 --leaf 4 --alloc 1 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
+# G: A + the teacher also grades card choices inside my own actions (Workshop / Artisan / Remodel / Mine gains, trashes, Throne Room, Cellar)
+--name G_full_k128_sub --act 1 --k0 128 --k1 128 --sub 1 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
 # E: value-net leaves after 8 turns, 2.5x the draws of A in the same time
---name E_leaf8_k320 --act 1 --k0 320 --k1 320 --leaf 8 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
+#dropped --name E_leaf8_k320 --act 1 --k0 320 --k1 320 --leaf 8 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
 # F: value-net leaves after 2 turns, 8x the draws of A (cheaper than A per question)
---name F_leaf2_k1024 --act 1 --k0 1024 --k1 1024 --leaf 2 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
+#dropped --name F_leaf2_k1024 --act 1 --k0 1024 --k1 1024 --leaf 2 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200

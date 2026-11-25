@@ -85,8 +85,8 @@
 c/ts.c              the teacher: bv-v1's bv.c + value-net leaves + successive halving (options off = bv-v1 exactly)
 ts/lib.py           builds ts.so, loads it through bv-v1's Python side
 match.py            a paired match arm (bv-v1's, with --leaf / --alloc)
-queue.txt           the arms, run in order by experiments/queue.py (systemd unit ts-queue)
-experiments/        equiv.py (identity with bv-v1), leaf_check.py, queue.py, journal.py
+queue.txt           the arms, run in order by experiments/run_queue.py (systemd unit ts-queue)
+experiments/        equiv.py (identity with bv-v1), leaf_check.py, run_queue.py, bank.py, bank_eval.py, compare.py
 results/            match_&lt;arm&gt;.json(l), leaf_check.json, ...
 track.py            results -&gt; runs/&lt;arm&gt;/ for the site
 engine/ rl-v3/ bv-v1/   submodules: the rules, the c2 net, the original teacher
