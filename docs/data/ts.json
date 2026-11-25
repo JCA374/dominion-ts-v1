@@ -16,13 +16,13 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 129,
+"kingdoms": 137,
 "done": false,
 "target": 300,
-"score": 0.6124031007751938,
-"lo": 0.5658914728682171,
-"hi": 0.6569767441860465,
-"secs": 265.01996124031007,
+"score": 0.6094890510948905,
+"lo": 0.5638686131386861,
+"hi": 0.6532846715328468,
+"secs": 265.75569343065695,
 "override_rate": 0.0453,
 "act_override_rate": 0.0234
 },
@@ -69,13 +69,13 @@
 "stream": "ts1",
 "kingdoms": "200"
 },
-"kingdoms": 41,
+"kingdoms": 47,
 "done": false,
 "target": 200,
-"score": 0.6585365853658537,
-"lo": 0.5670731707317073,
-"hi": 0.7439024390243902,
-"secs": 420.10878048780484,
+"score": 0.6595744680851063,
+"lo": 0.5797872340425532,
+"hi": 0.7393617021276596,
+"secs": 394.56595744680845,
 "override_rate": 0.0466,
 "act_override_rate": 0.0244
 }
@@ -96,6 +96,199 @@
 "truth_split_regret": 0.0021,
 "secs": 7780,
 "summary": "240 positions; c2's own pick gives up 0.88 points of win chance on average against 2,048-draw truth"
+},
+"bank_eval": {
+"c2": {
+"regret": 0.00884,
+"regret_buy": 0.01095,
+"regret_action": 0.00773,
+"positions": 240
+},
+"full128": {
+"leaf": 0,
+"alloc": 0,
+"draws": 128,
+"secs_per_question": 3.882,
+"gates": {
+"m0.0_z0.0": {
+"regret": 0.00558,
+"regret_buy": 0.01039,
+"regret_action": 0.00304,
+"gain_vs_c2": 0.00326,
+"gain_ci": [
+-0.00046,
+0.00882
+],
+"override_rate": 0.2847
+},
+"m0.0_z1.0": {
+"regret": 0.00486,
+"regret_buy": 0.00829,
+"regret_action": 0.00305,
+"gain_vs_c2": 0.00398,
+"gain_ci": [
+0.00079,
+0.00941
+],
+"override_rate": 0.1389
+},
+"m0.0_z2.0": {
+"regret": 0.00571,
+"regret_buy": 0.00915,
+"regret_action": 0.00389,
+"gain_vs_c2": 0.00313,
+"gain_ci": [
+0.00033,
+0.00844
+],
+"override_rate": 0.0403
+},
+"m0.0_z3.0": {
+"regret": 0.00639,
+"regret_buy": 0.01065,
+"regret_action": 0.00414,
+"gain_vs_c2": 0.00245,
+"gain_ci": [
+2e-05,
+0.00713
+],
+"override_rate": 0.0083
+},
+"m0.01_z0.0": {
+"regret": 0.00543,
+"regret_buy": 0.00962,
+"regret_action": 0.00322,
+"gain_vs_c2": 0.00341,
+"gain_ci": [
+-0.00025,
+0.00897
+],
+"override_rate": 0.225
+},
+"m0.01_z1.0": {
+"regret": 0.00487,
+"regret_buy": 0.00821,
+"regret_action": 0.00311,
+"gain_vs_c2": 0.00397,
+"gain_ci": [
+0.00079,
+0.00935
+],
+"override_rate": 0.1181
+},
+"m0.01_z2.0": {
+"regret": 0.00571,
+"regret_buy": 0.00915,
+"regret_action": 0.00389,
+"gain_vs_c2": 0.00313,
+"gain_ci": [
+0.00033,
+0.00844
+],
+"override_rate": 0.0403
+},
+"m0.01_z3.0": {
+"regret": 0.00639,
+"regret_buy": 0.01065,
+"regret_action": 0.00414,
+"gain_vs_c2": 0.00245,
+"gain_ci": [
+2e-05,
+0.00713
+],
+"override_rate": 0.0083
+},
+"m0.02_z0.0": {
+"regret": 0.00519,
+"regret_buy": 0.00859,
+"regret_action": 0.00339,
+"gain_vs_c2": 0.00365,
+"gain_ci": [
+9e-05,
+0.00898
+],
+"override_rate": 0.1722
+},
+"m0.02_z1.0": {
+"regret": 0.00495,
+"regret_buy": 0.00824,
+"regret_action": 0.00321,
+"gain_vs_c2": 0.00389,
+"gain_ci": [
+0.00071,
+0.00931
+],
+"override_rate": 0.1042
+},
+"m0.02_z2.0": {
+"regret": 0.00573,
+"regret_buy": 0.00915,
+"regret_action": 0.00392,
+"gain_vs_c2": 0.00311,
+"gain_ci": [
+0.00031,
+0.0084
+],
+"override_rate": 0.0389
+},
+"m0.02_z3.0": {
+"regret": 0.00639,
+"regret_buy": 0.01065,
+"regret_action": 0.00414,
+"gain_vs_c2": 0.00245,
+"gain_ci": [
+2e-05,
+0.00713
+],
+"override_rate": 0.0083
+},
+"m0.04_z0.0": {
+"regret": 0.00521,
+"regret_buy": 0.00861,
+"regret_action": 0.00341,
+"gain_vs_c2": 0.00363,
+"gain_ci": [
+0.00031,
+0.00896
+],
+"override_rate": 0.0986
+},
+"m0.04_z1.0": {
+"regret": 0.00497,
+"regret_buy": 0.00818,
+"regret_action": 0.00327,
+"gain_vs_c2": 0.00387,
+"gain_ci": [
+0.00076,
+0.00921
+],
+"override_rate": 0.0792
+},
+"m0.04_z2.0": {
+"regret": 0.00568,
+"regret_buy": 0.00915,
+"regret_action": 0.00384,
+"gain_vs_c2": 0.00316,
+"gain_ci": [
+0.00036,
+0.00845
+],
+"override_rate": 0.0347
+},
+"m0.04_z3.0": {
+"regret": 0.00639,
+"regret_buy": 0.01065,
+"regret_action": 0.00414,
+"gain_vs_c2": 0.00245,
+"gain_ci": [
+2e-05,
+0.00713
+],
+"override_rate": 0.0083
+}
+},
+"best_gate": "m0.0_z1.0"
+}
 },
 "leaf_check": {
 "full": {
@@ -147,12 +340,12 @@
 },
 {
 "arm": "G_full_k128_sub",
-"kingdoms": 41,
-"diff": 0.0244,
-"lo": -0.0549,
-"hi": 0.1098,
-"arm_score": 0.6585,
-"base_score": 0.6341
+"kingdoms": 47,
+"diff": 0.0426,
+"lo": -0.0319,
+"hi": 0.117,
+"arm_score": 0.6596,
+"base_score": 0.617
 }
 ]
 }
