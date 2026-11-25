@@ -67,7 +67,85 @@
   },
   "games_sha": "e7669f6f2fc7cb51"
  },
- "t": "2026-11-25 09:27",
+ "t": "2026-11-25 10:29",
  "done": false,
- "games": 0
+ "wall_secs": 3687,
+ "latency_s": {
+  "decisions": 3774,
+  "p50": 2.8029,
+  "p95": 9.3318
+ },
+ "action_overrides": {
+  "n": 81,
+  "mean_gain": 0.0523,
+  "top_changes": [
+   [
+    "Market -> end actions",
+    4
+   ],
+   [
+    "Festival -> Cellar",
+    3
+   ],
+   [
+    "Sentry -> Merchant",
+    3
+   ],
+   [
+    "Market -> Vassal",
+    3
+   ],
+   [
+    "Vassal -> Militia",
+    3
+   ],
+   [
+    "Village -> end actions",
+    2
+   ],
+   [
+    "Sentry -> Cellar",
+    2
+   ],
+   [
+    "Sentry -> Poacher",
+    2
+   ],
+   [
+    "Festival -> end actions",
+    2
+   ],
+   [
+    "Poacher -> end actions",
+    2
+   ],
+   [
+    "Sentry -> Vassal",
+    2
+   ],
+   [
+    "Artisan -> Moneylender",
+    2
+   ]
+  ]
+ },
+ "games": 48,
+ "score": 0.5938,
+ "ci95": [
+  0.5104,
+  0.6771
+ ],
+ "override_rate": 0.0457,
+ "secs_per_game": 288.13,
+ "rollouts": 10157440,
+ "capped": 0,
+ "errors": 0,
+ "pairs": 24,
+ "unpaired_games": 2,
+ "buy_overrides": 60,
+ "buys": 1313,
+ "act_graded": 2461,
+ "act_overrides": 81,
+ "act_override_rate": 0.0329,
+ "score_uncapped_pairs": 0.5938
 }
