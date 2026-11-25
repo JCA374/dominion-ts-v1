@@ -1,0 +1,6 @@
+# match arms, run in order by experiments/queue.py (unit ts-queue). Common: teacher on buys + actions (act 1), public
+# sampler (obs 1, as the advisor), margin 0.02, z 2, vs frozen c2, stream ts1 (fresh kingdoms), both seats.
+# A: today's advisor teacher (128 draws, rollouts to the end)
+--name A_full_k128 --act 1 --k0 128 --k1 128 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 300 --workers 7
+# B: value-net leaves after 4 turns, 5x the draws in about the same time
+--name B_leaf4_k640 --act 1 --k0 640 --k1 640 --leaf 4 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 300 --workers 7

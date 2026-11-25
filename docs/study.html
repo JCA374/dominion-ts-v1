@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Study</title>
+<link rel="stylesheet" href="style.css?v=d5cc2c7c">
+</head>
+<body>
+<main>
+<h1>Study this project</h1>
+<p class="lede">For someone who wants to learn from this project rather than follow it: what to read in which order, the ideas
+you need, the words we use, how to run it yourself, and a few exercises.</p>
+
+<section>
+  <h2>Reading order</h2>
+  <ol>
+<li>Overview, then Results: what is being compared and the current numbers (10 min).</li>
+<li>The teacher tab: how one question is graded (10 min).</li>
+<li><code>c/ts.c</code>: <code>rollout()</code>, <code>bv_grade()</code>, <code>ts_grade_sh()</code>, <code>bv_advise()</code> (30 min).</li>
+<li><code>match.py</code> and <code>queue.txt</code>: how an arm is played and scored (10 min).</li>
+<li>bv-v1's site for where the teacher came from; sg-v1's for why training c2 further did not help.</li>
+</ol>
+  <ol id="order">
+  </ol>
+</section>
+
+<section>
+  <h2>Key concepts</h2>
+  <div class="box"><b>Flat Monte Carlo search</b> — score each move by playing many random continuations with a fixed policy and averaging. Here: every candidate buy or action, c2 continuing. People forget it is only as good as the rollout policy: it finds moves that are good <em>if c2 plays the rest</em>.</div>
+<div class="box"><b>Common random numbers (pairing)</b> — give every candidate the same random deal, then compare differences. The difference between two options is much less noisy than either value. Used in the SE of the override gate.</div>
+<div class="box"><b>Determinization</b> — hidden information handled by dealing the unknown cards at random each draw, then searching as if the deal were known. Its known flaw (strategy fusion) is small here because the rollout policy does not peek.</div>
+<div class="box"><b>Bias against variance</b> — value-net leaves cut variance (and cost) but add the value net's errors. The match decides which wins at a fixed budget.</div>
+<div class="box"><b>Successive halving</b> — a best-arm identification method: equal rounds, drop the worse half each time. It spends the budget where the decision is.</div>
+<div class="box"><b>Winner's curse</b> — the best of many noisy options looks better than it is. The margin and z gate protect against overriding the net on noise.</div>
+</section>
+
+<section>
+  <h2>Glossary</h2>
+  <p class="muted small">From <code>glossary.md</code> in the repo (one <code>**term** — meaning</code> per line). The podcast narration uses the same list for names that need a pronunciation.</p>
+  <dl class="glossary" id="glossary"></dl>
+</section>
+
+<section>
+  <h2>Reproduce it</h2>
+  <pre>
+git clone --recursive https://github.com/JCA374/dominion-ts-v1 && cd dominion-ts-v1
+python -m venv .venv && .venv/bin/pip install numpy        # (this repo uses rl-v3's venv)
+.venv/bin/python experiments/equiv.py --lib ts              # builds ts.so; with options off = bv-v1's teacher
+.venv/bin/python experiments/leaf_check.py --games 4        # ~4 min: value leaves vs full rollouts
+.venv/bin/python match.py --name try --act 1 --k0 32 --k1 32 --leaf 4 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 20 --workers 4
+</pre><p>The last command plays 40 games (about 10 minutes) and writes results/match_try.json: expect a score above 50% with a wide interval.</p>
+</section>
+
+<section>
+  <h2>Exercises</h2>
+  <ol>
+<li><b>Easy.</b> Run leaf_check with D = 1 and D = 16. Expect D=1 to be very cheap but rank options poorly, D=16 nearly as costly as full rollouts.</li>
+<li><b>Medium.</b> Turn off pairing: give each candidate its own seed in <code>draw_all</code>. Measure the SE of the gain at the same K: expect it several times larger and far fewer overrides.</li>
+<li><b>Medium.</b> Change the gate (margin 0 / z 1) at 128 draws and play 100 kingdoms: more overrides, but do they win more?</li>
+<li><b>Hard.</b> Use a different rollout opponent (c1 or the GA) while playing against c2: how much of the gain depends on knowing the opponent?</li>
+</ol>
+</section>
+</main>
+<script src="site.js?v=a8f18eb9"></script>
+<script src="common.js?v=cf5d53e1"></script>
+<script src="project.js?v=092dcfd4"></script>
+<script src="study.js?v=ca69f153"></script>
+</body>
+</html>

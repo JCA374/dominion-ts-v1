@@ -1,0 +1,9 @@
+[submodule "engine"]
+	path = engine
+	url = https://github.com/JCA374/dominion-engine.git
+[submodule "rl-v3"]
+	path = rl-v3
+	url = https://github.com/JCA374/dominion-rl-v3.git
+[submodule "bv-v1"]
+	path = bv-v1
+	url = https://github.com/JCA374/dominion-bv-v1.git

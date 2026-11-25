@@ -1,0 +1,36 @@
+{
+ "full": {
+  "secs": 141.9,
+  "rows": 110
+ },
+ "leaf2": {
+  "secs": 10.7,
+  "corr_level": 0.973,
+  "mean_full": 0.464,
+  "mean_leaf": 0.482,
+  "corr_within": 0.804,
+  "spread_full": 0.0724,
+  "spread_leaf": 0.0516,
+  "best_same": 0.555
+ },
+ "leaf4": {
+  "secs": 27.7,
+  "corr_level": 0.981,
+  "mean_full": 0.464,
+  "mean_leaf": 0.476,
+  "corr_within": 0.872,
+  "spread_full": 0.0724,
+  "spread_leaf": 0.0578,
+  "best_same": 0.591
+ },
+ "leaf8": {
+  "secs": 55.6,
+  "corr_level": 0.989,
+  "mean_full": 0.464,
+  "mean_leaf": 0.473,
+  "corr_within": 0.929,
+  "spread_full": 0.0724,
+  "spread_leaf": 0.0627,
+  "best_same": 0.691
+ }
+}

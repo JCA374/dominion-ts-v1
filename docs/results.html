@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Results</title>
+<link rel="stylesheet" href="style.css?v=d5cc2c7c">
+</head>
+<body>
+<main>
+<h1>Results</h1>
+<p class="lede">Every match arm of <code>queue.txt</code>, read from <code>results/</code>. Score = match points of c2 with
+the teacher (win 1, tie ½, loss 0) against the opponent, both seats of every kingdom, the same fresh kingdoms in every
+arm (stream <code>ts1</code>). Intervals are 95% bootstrap intervals over kingdoms. An arm still playing shows its
+running score: early numbers move a lot.</p>
+<section><h2>Match arms</h2><div id="arms"></div>
+<p class="muted small">Draws = hidden-state deals per option (with successive halving: the average budget per option).
+Leaf = turns before the value net scores the position (0: to the end). Seconds per game are per worker with 7 workers
+sharing 4 cores, about 3× slower than one game alone.</p></section>
+<section><h2>Side measurements</h2><div id="side"></div></section>
+</main>
+<script src="site.js?v=a8f18eb9"></script>
+<script src="common.js?v=cf5d53e1"></script>
+<script src="project.js?v=092dcfd4"></script>
+<script src="results.js?v=7b928566"></script>
+</body>
+</html>

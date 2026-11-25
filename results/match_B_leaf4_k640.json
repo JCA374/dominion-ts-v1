@@ -1,0 +1,73 @@
+{
+ "name": "B_leaf4_k640",
+ "args": {
+  "name": "B_leaf4_k640",
+  "base": "c2",
+  "bv": 1,
+  "opp": "c2",
+  "k0": 640,
+  "k1": 640,
+  "se": 1.5,
+  "topn": 5,
+  "margin": 0.02,
+  "student": "",
+  "z": 2.0,
+  "act": 1,
+  "resume": false,
+  "stream": "ts1",
+  "games": "",
+  "obs": 1,
+  "kval": 0,
+  "leaf": 4,
+  "alloc": 0,
+  "kingdoms": 300,
+  "workers": 4
+ },
+ "manifest": {
+  "name": "B_leaf4_k640",
+  "base": "c2",
+  "bv": 1,
+  "opp": "c2",
+  "k0": 640,
+  "k1": 640,
+  "se": 1.5,
+  "topn": 5,
+  "margin": 0.02,
+  "student": "",
+  "z": 2.0,
+  "act": 1,
+  "stream": "ts1",
+  "games": "",
+  "obs": 1,
+  "kval": 0,
+  "leaf": 4,
+  "alloc": 0,
+  "kingdoms": 300,
+  "models": {
+   "rl3_c2_2654.npy": "0018fb85b6cc87ec",
+   "rl3_c1_2300.npy": "daae8a0049b13346",
+   "rl1_r2_2200.npy": "47ed00b6f7cfa628"
+  },
+  "seat_sha": {
+   "base": "0018fb85b6cc87ec",
+   "opp": "0018fb85b6cc87ec"
+  },
+  "student_sha": null,
+  "sources": {
+   "engine/c/engine.c": "d303219f698b27c1",
+   "c/ts.c": "073392d6656edfe0",
+   "c/fastnet.h": "9c4705a216f60a3e",
+   "rl-v3/c/rl.c": "7d9a173697fef5ba",
+   "rl-v3/az-v1/c/az.c": "1777b8ee4dcbb079",
+   "engine/c/engine.h": "946bbed5cf1e4a89"
+  },
+  "library": {
+   "path": "ts.so",
+   "sha": "05c5b011dca02ba9"
+  },
+  "games_sha": "e7669f6f2fc7cb51"
+ },
+ "t": "2026-11-25 09:27",
+ "done": false,
+ "games": 0
+}

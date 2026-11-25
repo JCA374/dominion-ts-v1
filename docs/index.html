@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview</title>
+<link rel="stylesheet" href="style.css?v=d5cc2c7c">
+</head>
+<body>
+<main>
+<header class="hero">
+  <h1>A stronger teacher for the Steam advisor, inside three seconds</h1>
+  <p class="lede">The advisor that sits beside your Steam Dominion games asks a <em>teacher</em> about every buy and every action play: each option is played out to the end of the game many times by the RL-v3 c2 net, and the option that wins most often is suggested. This project spends four days making that teacher stronger within the same 3-second budget, measured in paired matches against frozen c2 on fresh kingdoms, with the hope of beating Steam's Hard bots.</p>
+  <p class="countdown" id="countdown"></p>
+</header>
+
+<section>
+  <h2>Status now</h2>
+  <div class="cards" id="cards"></div>
+  <p class="muted small">Numbers come from the run files and update every 15 minutes. Details on the <a href="training.html">Training</a> tab.</p>
+</section>
+
+<section>
+  <h2>What this is</h2>
+  <p>Dominion is a card game: each turn you play cards from your hand and buy one new card for your deck. The best
+  model of this project family is not a network on its own but a <strong>search</strong> on top of one: at a decision
+  the teacher (from <a href="https://jca374.github.io/dominion-bv-v1/">bv-v1</a>) copies the game, deals the cards it
+  cannot see at random, and lets the c2 net play both players to the end, once for every option, on the same deal.
+  Repeated 128 times, the option with the most wins is the advice. It beat plain c2 by 59-62% in earlier matches.</p>
+  <p><strong>Example.</strong> Turn 6, you have $5: Laboratory, Market, Silver or nothing. Each of the four options is
+  played out on the same 128 deals of your unseen cards and the opponent's hand. Laboratory wins 58 of 128, Market 55,
+  Silver 51, nothing 40. The teacher only overrides the net's own pick when the gap is above 2 points <em>and</em>
+  2 standard errors, so it rarely gets fooled by luck.</p>
+  <p><strong>The catch.</strong> In the advisor the teacher has 3 seconds per question on a laptop that also runs the
+  game. A rollout to the end costs ~1.6 ms, so 3 seconds is ~1,800 rollouts shared by up to 11 options. Noise, not
+  the net, is the limit: with 128 draws one option's win rate is known to about ±4 points.</p>
+  <p><strong>Goal.</strong> A teacher that fits the same budget and beats today's advisor teacher, paired on the same
+  fresh kingdoms (both seats), and beats plain c2 by more than today's does. Steam's Hard bot cannot be simulated here;
+  frozen c2 (and GA and RL-v1 opponents for robustness) stand in for it.</p>
+</section>
+
+<section>
+  <h2>Approach</h2>
+  <p>No new training of the net (sg-v1 showed that PPO from c2 is flat). Instead, four levers on the search itself,
+  each tested as a match <em>arm</em> (300 kingdoms × 2 seats against frozen c2), queued one after another:</p>
+  <ol>
+   <li><strong>Value-net leaves.</strong> Stop each rollout D turns after the decision and score it with c2's own win
+   estimate instead of playing to the end. D=4 is 5× cheaper and less noisy per draw (a number in 0..1, not win/loss),
+   at the price of the value net's bias.</li>
+   <li><strong>Successive halving.</strong> The same rollouts, but spent on the leaders: after each round the worse
+   half of the options is dropped (never your own pick), so the final comparison gets most of the draws.</li>
+   <li><strong>More cores.</strong> The advisor's teacher used one core. Several processes grading the same question
+   and pooling their draws give 3-4× the draws in the same 3 seconds.</li>
+   <li><strong>The gate.</strong> With less noise the override thresholds (2 points, 2 standard errors) can be retuned.</li>
+  </ol>
+<pre>
+ position from the advisor ──► candidates (pick, pass, c2's top 5 / every action)
+        │                                   │
+        ▼                                   ▼
+ deal unseen cards (public view) ──► c2 plays both sides ──► end of game  or  value net after D turns
+        │                                   │
+        ▼                                   ▼
+ paired win rates per option ──► override only if gain > margin and > z·SE ──► advice on screen
+        │
+ test: arm vs frozen c2, 600 games ──► Results tab ──► best arm into autopilot/teacher.py
+</pre>
+  <p>Numbers: c2 is a 413-input, 2×256 MLP (181k weights); one rollout to the end ~1.6 ms on one core; a teacher game
+  (buys + actions graded) takes minutes, so an arm of 600 games takes many hours on 7 workers.</p>
+</section>
+
+<section>
+  <h2>Decisions <span class="muted small">newest first · why things are the way they are</span></h2>
+  <p class="muted small">Logged with <code>python experiments/journal.py --decision "title" "what was chosen and why" "what was rejected"</code>.</p>
+  <div id="decisions"></div>
+</section>
+
+<section>
+  <h2>How to read this site</h2>
+  <div id="guide"></div>
+</section>
+
+<section>
+  <h2>Repo layout</h2>
+<pre>
+c/ts.c              the teacher: bv-v1's bv.c + value-net leaves + successive halving (options off = bv-v1 exactly)
+ts/lib.py           builds ts.so, loads it through bv-v1's Python side
+match.py            a paired match arm (bv-v1's, with --leaf / --alloc)
+queue.txt           the arms, run in order by experiments/queue.py (systemd unit ts-queue)
+experiments/        equiv.py (identity with bv-v1), leaf_check.py, queue.py, journal.py
+results/            match_&lt;arm&gt;.json(l), leaf_check.json, ...
+track.py            results -&gt; runs/&lt;arm&gt;/ for the site
+engine/ rl-v3/ bv-v1/   submodules: the rules, the c2 net, the original teacher
+docs/               this site
+</pre>
+</section>
+</main>
+<footer>Updated automatically every 15 minutes. Numbers are measured on fresh episodes, not estimated.</footer>
+<script src="site.js?v=a8f18eb9"></script>
+<script src="common.js?v=cf5d53e1"></script>
+<script src="project.js?v=092dcfd4"></script>
+<script src="overview.js?v=cb92b7c0"></script>
+</body>
+</html>

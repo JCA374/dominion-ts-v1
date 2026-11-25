@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speed</title>
+<link rel="stylesheet" href="style.css?v=d5cc2c7c">
+</head>
+<body>
+<main>
+<h1>Speed</h1>
+<p class="lede">Machine: a 4-core / 8-thread laptop CPU, 7 GB RAM, no GPU. All search code is C
+(<code>c/ts.c</code> + the engine), called through ctypes. A rollout to the end costs ~1.6 ms alone and 3-13 ms when every core
+is busy. Value-net leaves after D = 2 / 4 / 8 turns cost 0.08 / 0.20 / 0.39 of a full rollout (results/leaf_check.json,
+4 games of graded buys, 128 draws). Advisor teacher, one question at turn 1 with 1 s: 1 process 25 draws, 3 processes 59
+(2.4×; the laptop has 4 real cores and the game needs one).</p>
+</main>
+<script src="site.js?v=a8f18eb9"></script>
+<script src="common.js?v=cf5d53e1"></script>
+<script src="project.js?v=092dcfd4"></script>
+
+</body>
+</html>

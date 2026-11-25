@@ -1,0 +1,8 @@
+*.so
+*.so.*
+/build/
+/logs/
+/data/
+__pycache__/
+.venv
+*.pid

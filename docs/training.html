@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Training</title>
+<link rel="stylesheet" href="style.css?v=d5cc2c7c">
+</head>
+<body>
+<main>
+<h1>Training</h1>
+<p class="lede">How the current run is doing and how it compares with earlier runs. Every number comes from a file written
+by training; nothing is estimated except the ETA, which says so.</p>
+<p class="muted" id="updated"></p>
+<section class="cards" id="cards"></section>
+<section>
+  <h2>Progress</h2>
+  <div class="chartbox"><div class="h"><canvas id="chart"></canvas></div></div>
+  <p class="muted small" id="chartnote"></p>
+  <p id="eta"></p>
+</section>
+<section>
+  <h2>Goal table</h2>
+  <p class="muted">Every agent measured on episodes it never saw. The 95% interval is a Wilson interval.</p>
+  <div class="tablewrap"><table class="t" id="goaltable"></table></div>
+</section>
+<section>
+  <h2>Stage timeline</h2>
+  <p class="muted small">When each stage started and ended, from the run's events. Hover a bar for the dates.</p>
+  <div id="timeline"></div>
+</section>
+<section>
+  <h2>Other signals</h2>
+  <p class="muted small" id="morenote">More columns of stats.csv.</p>
+  <div class="charts" id="charts"></div>
+</section>
+<section>
+  <h2>Runs</h2>
+  <div class="tablewrap"><table class="t" id="runs"></table></div>
+</section>
+<section>
+  <h2>Analysis reports</h2>
+  <p class="muted small">Failure-analysis reports in <code>docs/reports/</code>, newest first.</p>
+  <ul id="reports"></ul>
+</section>
+</main>
+<footer>Updated automatically every 15 minutes. "Best check" is the best of many checks and flatters (winner's curse); the goal table is the honest number.</footer>
+<script src="site.js?v=a8f18eb9"></script>
+<script src="common.js?v=cf5d53e1"></script>
+<script src="project.js?v=092dcfd4"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="charts.js?v=349556e8"></script>
+<script src="training.js?v=4adfdc84"></script>
+</body>
+</html>

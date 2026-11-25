@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The data</title>
+<link rel="stylesheet" href="style.css?v=d5cc2c7c">
+</head>
+<body>
+<main>
+<h1>The data</h1>
+<p class="lede">A teacher question is a <em>position</em> as the advisor reads it off the Steam screen,
+and nothing more: the supply pile sizes, my deck split into draw pile, hand, discard and play area, the opponent's
+cards (only how many are where: which ones are in their hand is unknown), turns played, and for a buy the coins, buys
+and actions left. Example (turn 1, $5): supply Copper 46, Silver 40, … Witch 10; my hand Copper×2, Estate×3; in play
+Copper×5; the opponent's ten starting cards unseen.</p>
+<h2>What the teacher may not see</h2>
+<p>The order of my draw pile and everything hidden about the opponent. Each draw deals those cards again: my unseen
+cards are shuffled into my draw pile; the opponent's deck, hand and discard are pooled and dealt again at the same
+sizes (the <em>public sampler</em>, <code>obs 1</code>, the same view the advisor has). Cards the rules make public, such
+as a Bureaucrat's Victory card on top of a deck, stay where they are. bv-v1's tests check that two positions that differ
+only in hidden cards get identical grades.</p>
+<h2>The candidates</h2>
+<p>Buy: every legal buy if there are at most 8; otherwise the net's pick, passing, and c2's five next-best buys.
+Action: every action card in hand and "end the action phase". Each candidate is played on every draw.</p>
+<h2>Where the test positions come from</h2>
+<p>Matches: c2 with the teacher plays frozen c2 on 300 kingdoms from the seeded stream <code>ts1</code> (random 10-card
+kingdoms of the base set), both seats each. Every arm plays the same kingdoms and starting seeds, so arms are paired
+game by game. No arm sees its test kingdoms beforehand, and nothing is trained here: the only "fitting" is choosing
+settings, which is why the final pick is confirmed on a second stream.</p>
+</main>
+<script src="site.js?v=a8f18eb9"></script>
+<script src="common.js?v=cf5d53e1"></script>
+<script src="project.js?v=092dcfd4"></script>
+</body>
+</html>

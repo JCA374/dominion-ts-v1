@@ -1,0 +1,113 @@
+{
+ "title": "Dominion ts-v1: Teacher Search",
+ "icon": "🔭",
+ "repo": "JCA374/dominion-ts-v1",
+ "deadline": "2026-11-29T09:00:00+01:00",
+ "deadline_text": "Sunday 29 November, 09:00",
+ "goal": {
+  "metric": "score",
+  "target": 0.53,
+  "label": "vs today's advisor teacher (paired, fresh kingdoms)",
+  "columns": []
+ },
+ "goal_text": "a teacher that fits the advisor's 3-second budget and beats today's advisor teacher (and plain c2 by more than it does), paired on fresh kingdoms, both seats",
+ "names": {},
+ "chart": {
+  "x": "games",
+  "x_label": "games played (both seats of each kingdom)",
+  "y_label": "score % vs frozen c2",
+  "series": [
+   {
+    "key": "score",
+    "label": "running score",
+    "style": "line",
+    "color": "--accent"
+   },
+   {
+    "key": "lo",
+    "label": "95% low",
+    "style": "line",
+    "color": "--muted"
+   },
+   {
+    "key": "hi",
+    "label": "95% high",
+    "style": "line",
+    "color": "--muted"
+   }
+  ]
+ },
+ "charts": [
+  {
+   "title": "Seconds per game (one worker, 7 in parallel)",
+   "percent": false,
+   "series": [
+    {
+     "key": "secs_per_game",
+     "label": "secs per game"
+    }
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "label": "Games",
+   "key": "games",
+   "fmt": "int",
+   "sub": "in this arm"
+  }
+ ],
+ "stale_minutes": 60,
+ "alive_pattern": "match.py .*--name {run}( |$)",
+ "tab_labels": {
+  "inputs.html": "The positions"
+ },
+ "push_globs": [
+  "runs/*/stats.csv",
+  "runs/*/events.jsonl",
+  "results/*.json",
+  "queue.txt"
+ ],
+ "tabs": [
+  [
+   "index.html",
+   "Overview"
+  ],
+  [
+   "log.html",
+   "Log"
+  ],
+  [
+   "results.html",
+   "Results"
+  ],
+  [
+   "training.html",
+   "Training"
+  ],
+  [
+   "inputs.html",
+   "The positions"
+  ],
+  [
+   "model.html",
+   "The teacher"
+  ],
+  [
+   "speed.html",
+   "Speed"
+  ],
+  [
+   "study.html",
+   "Study"
+  ],
+  [
+   "lessons.html",
+   "Lessons"
+  ],
+  [
+   "podcast/index.html",
+   "Podcast"
+  ]
+ ]
+}
