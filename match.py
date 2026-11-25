@@ -145,6 +145,8 @@ def main():
     ap.add_argument("--z", type=float, default=0.0)
     ap.add_argument("--act", type=int, default=0, help="1: also grade actions, 2: actions only")
     ap.add_argument("--resume", action="store_true", help="keep the games already in the .jsonl")
+    ap.add_argument("--same-results-sources", action="store_true",
+                    help="resume across a source change that equiv.py proved plays identical games (recorded)")
     ap.add_argument("--stream", default="gate")
     ap.add_argument("--games", default="", help="a frozen game manifest (JSON) instead of a stream")
     ap.add_argument("--obs", type=int, default=0, help="sampler: 0 simulator, 1 public")
@@ -159,7 +161,7 @@ def main():
     out = os.path.join(ROOT, "results", f"match_{a['name']}")
     from bv import core as _c
     import hashlib
-    manifest = {k: v for k, v in a.items() if k not in ("workers", "resume")}
+    manifest = {k: v for k, v in a.items() if k not in ("workers", "resume", "same_results_sources")}
     manifest["models"] = {m: _c.sha(m) for m in ("rl3_c2_2654.npy", "rl3_c1_2300.npy", "rl1_r2_2200.npy")}
     manifest["seat_sha"] = {x: hashlib.sha256(open(_c.net_file(a[x]), "rb").read()).hexdigest()[:16]
                             for x in ("base", "opp") if a[x] not in ("ga", "ga2")}
@@ -171,11 +173,19 @@ def main():
     manifest["games_sha"] = hashlib.sha256(json.dumps([[g["i"], g["kingdom"], g["seed"], g["seat"]] for g in gs])
                                            .encode()).hexdigest()[:16]
     res = []
+    if a["resume"] and os.path.exists(out + ".json") and "source_changes" in (json.load(open(out + ".json")).get("manifest") or {}):
+        manifest["source_changes"] = json.load(open(out + ".json"))["manifest"]["source_changes"]
     if a["resume"] and os.path.exists(out + ".json"):
         old = json.load(open(out + ".json")).get("manifest")
         if old is not None and old != manifest:          # never mix games of different settings
             diff = sorted(k for k in set(old) | set(manifest) if old.get(k) != manifest.get(k))
-            raise SystemExit(f"resume refused: manifest differs from {out}.json in {diff}")
+            if a["same_results_sources"] and set(diff) <= {"sources", "library", "source_changes", "same_results_sources"}:
+                # a speed-only change proven to play identical games (experiments/equiv.py): kept on record
+                manifest["source_changes"] = old.get("source_changes", []) + [
+                    {"t": time.strftime("%Y-%m-%d %H:%M"), "at_games": sum(1 for _ in open(out + ".jsonl")) if os.path.exists(out + ".jsonl") else 0, "from": old.get("sources"),
+                     "library_from": old.get("library")}]
+            else:
+                raise SystemExit(f"resume refused: manifest differs from {out}.json in {diff}")
     if a["resume"] and os.path.exists(out + ".jsonl"):
         res = [json.loads(line) for line in open(out + ".jsonl")]
         want = {(g["i"], g["seat"]): g for g in gs}

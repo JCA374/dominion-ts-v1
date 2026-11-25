@@ -15,4 +15,4 @@
 # F: value-net leaves after 2 turns, 8x the draws of A (cheaper than A per question)
 #dropped --name F_leaf2_k1024 --act 1 --k0 1024 --k1 1024 --leaf 2 --margin 0.02 --z 2 --obs 1 --opp c2 --stream ts1 --kingdoms 200
 # H: the deployment candidate -- the advisor with 3 processes (~320 draws), the gate the bank chose (margin 0.01, z 1), card choices
---name H_full_k320_m01z1_sub --act 1 --k0 320 --k1 320 --sub 1 --margin 0.01 --z 1 --obs 1 --opp c2 --stream ts1 --kingdoms 200
+--name H_full_k320_m01z1_sub --act 1 --k0 320 --k1 320 --sub 1 --margin 0.01 --z 1 --obs 1 --opp c2 --stream ts1 --kingdoms 200 --same-results-sources
