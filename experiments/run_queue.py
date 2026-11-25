@@ -3,7 +3,7 @@ results/match_<name>.json says done is skipped, and so is one whose match is run
 arm started by hand); an unfinished one resumes. Re-reads the file after every arm, so arms can be added while it
 runs. Lanes: --lanes 2 --lane 0/1 = two runners side by side, each taking the next free arm (--workers each).
 
-    python experiments/queue.py --lane 0 --lanes 2 --workers 4     (systemd user units ts-lane0, ts-lane1)
+    python experiments/run_queue.py --lane 0 --lanes 2 --workers 4     (systemd user units ts-lane0, ts-lane1)
 """
 import argparse
 import json, os, shlex, subprocess, sys, time

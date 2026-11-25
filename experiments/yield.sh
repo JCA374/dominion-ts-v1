@@ -5,7 +5,7 @@
 cd "$(dirname "$0")/.."
 paused=0
 while true; do
-  if pgrep -f 'Dominion\.exe' > /dev/null || pgrep -f 'autopilot/advisor\.py' > /dev/null; then
+  if pgrep -f 'Dominion\.exe' > /dev/null || pgrep -f '^[^ ]*python[0-9.]* [^ ]*autopilot/advisor\.py' > /dev/null; then
     if [ $paused = 0 ]; then
       for u in $(systemctl --user list-units 'ts-*' --state=running --plain --no-legend | awk '{print $1}' | grep -v 'ts-yield'); do
         systemctl --user kill -s SIGSTOP "$u"

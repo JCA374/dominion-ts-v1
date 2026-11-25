@@ -18,7 +18,9 @@ def arms():
     out, note = [], ""
     for line in open(os.path.join(ROOT, "queue.txt")):
         s = line.strip()
-        if s.startswith("#"):
+        if s.startswith("#stopped "):                  # an arm stopped early: still shown, never resumed
+            s = s[len("#stopped "):]
+        elif s.startswith("#"):
             note = s.lstrip("# ")
             continue
         s = s.split("#")[0].strip()

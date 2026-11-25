@@ -493,7 +493,7 @@ static void bv_pol(const float *lg, const int *cand, int nc, float *pol) {
  * actions). Adaptive draws: after k0, add 16 at a time (up to k1) while the paired difference between the actual top
  * two candidates is within se_mult of its own standard error; a tie with zero observed SE is unresolved (another
  * batch may separate them), not a stop. */
-#define BV_KMAX 1024
+#define BV_KMAX 2048
 static double g_deadline;           /* bv_advise: stop adding draws after this time (bv_now; 0 = no cap) */
 
 /* ts-v1 successive halving (ts_set_alloc 1): the budget of the uniform grader (k1 draws per candidate) in rounds;
