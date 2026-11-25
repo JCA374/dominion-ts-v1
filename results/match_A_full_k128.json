@@ -67,85 +67,85 @@
   },
   "games_sha": "e7669f6f2fc7cb51"
  },
- "t": "2026-11-25 11:09",
+ "t": "2026-11-25 12:07",
  "done": false,
- "wall_secs": 6115,
+ "wall_secs": 9611,
  "latency_s": {
-  "decisions": 8134,
-  "p50": 2.3914,
-  "p95": 8.6784
+  "decisions": 12330,
+  "p50": 2.4038,
+  "p95": 9.0175
  },
  "action_overrides": {
-  "n": 125,
-  "mean_gain": 0.1202,
+  "n": 191,
+  "mean_gain": 0.1138,
   "top_changes": [
+   [
+    "Chapel -> end actions",
+    6
+   ],
+   [
+    "Sentry -> Vassal",
+    6
+   ],
    [
     "Merchant -> end actions",
     5
    ],
    [
-    "Chapel -> end actions",
-    5
+    "Throne Room -> Vassal",
+    4
+   ],
+   [
+    "Vassal -> end actions",
+    4
+   ],
+   [
+    "Throne Room -> end actions",
+    4
+   ],
+   [
+    "Village -> Vassal",
+    4
+   ],
+   [
+    "Poacher -> Artisan",
+    4
    ],
    [
     "Village -> end actions",
     3
    ],
    [
+    "Market -> Vassal",
+    3
+   ],
+   [
+    "Laboratory -> Vassal",
+    3
+   ],
+   [
     "Market -> end actions",
     3
-   ],
-   [
-    "Merchant -> Market",
-    3
-   ],
-   [
-    "Throne Room -> Market",
-    2
-   ],
-   [
-    "Village -> Festival",
-    2
-   ],
-   [
-    "Moat -> Festival",
-    2
-   ],
-   [
-    "end actions -> Chapel",
-    2
-   ],
-   [
-    "Throne Room -> Vassal",
-    2
-   ],
-   [
-    "Throne Room -> Witch",
-    2
-   ],
-   [
-    "Artisan -> Moneylender",
-    2
    ]
   ]
  },
- "games": 98,
- "score": 0.6224,
+ "games": 150,
+ "score": 0.6267,
  "ci95": [
-  0.551,
-  0.699
+  0.5667,
+  0.6867
  ],
- "override_rate": 0.0425,
- "secs_per_game": 255.99,
- "rollouts": 4316544,
+ "override_rate": 0.0436,
+ "secs_per_game": 260.38,
+ "rollouts": 6543232,
  "capped": 0,
  "errors": 0,
- "pairs": 49,
- "unpaired_games": 2,
- "buy_overrides": 113,
- "buys": 2656,
- "act_graded": 5478,
- "act_overrides": 125,
+ "pairs": 75,
+ "unpaired_games": 0,
+ "buy_overrides": 172,
+ "buys": 3941,
+ "act_graded": 8389,
+ "act_overrides": 191,
  "act_override_rate": 0.0228,
- "score_uncapped_pairs": 0.6224
+ "score_uncapped_pairs": 0.6267
 }
