@@ -1123,3 +1123,73 @@ int bv_advise(const float *prm, int nh, int nf, const int *supply, int me, const
     return K;
 }
 
+
+/* ts-v1: the advisor's card choices (the Steam advisor; ts_set_sub's rule from outside a game). The position is the
+ * one JUST BEFORE the action `card` was played (card still in hand, its action not yet spent; zones as bv_advise),
+ * hk/ho: my nh decisions since (kind, choice; -1 = pass), kind + opts/n/may_pass: the decision now, inc: the pick to
+ * compare against (a card id, or RL_PASS). Every option is played on the same draws: the action again from that
+ * position, my choices replayed, the option forced, c2 on to the end (or the leaf). Same out / returns as bv_advise;
+ * -1 also when the replay cannot reach this decision (hidden cards seen since the action, e.g. a Vassal). */
+int ts_advise_sub(const float *prm, int nh, int nf, const int *supply, int me, const int *zones, const int *zn,
+                  const int *turns, int coins, int buys, int actions, int merchants, int card, const int *hk,
+                  const int *ho, int nhist, int kind, const int *opts, int n, int may_pass, int inc, float secs,
+                  uint64_t seed, float *q, float *se, unsigned char *mask, float *out) {
+    double t0 = bv_now();
+    static de_game g;
+    memset(&g, 0, sizeof g);
+    g.nplayers = 2;
+    memcpy(g.supply, supply, sizeof g.supply);
+    const int *z = zones;
+    for (int i = 0; i < 2; i++) {
+        de_player *p = &g.p[i == 0 ? me : 1 - me];
+        int *dst[4] = {p->deck, p->hand, p->discard, p->play}, *len[4] = {&p->deck_n, &p->hand_n, &p->discard_n, &p->play_n};
+        for (int k = 0; k < 4; k++) {
+            int m = zn[4 * i + k];
+            if (m < 0 || m > DE_ZONE) return -2;
+            memcpy(dst[k], z, (size_t)m * sizeof(int));
+            *len[k] = m;
+            z += m;
+        }
+        p->turns = turns[i == 0 ? me : 1 - me];
+        p->rng = 1;
+    }
+    g.current = me;
+    g.coins = coins; g.buys = buys; g.actions = actions; g.merchants = merchants;
+    g.trace = 0xcbf29ce484222325ULL;
+    for (int a = 0; a < RL_NA; a++) { q[a] = NAN; se[a] = NAN; }
+    memset(mask, 0, RL_NA);
+    out[0] = inc; out[1] = inc; out[2] = 0; out[4] = 0;
+    int ok[RL_NA] = {0}, nl = 0, inhand = 0;
+    for (int i = 0; i < n; i++) if (opts[i] >= 0 && opts[i] < RL_PASS) ok[opts[i]] = 1;
+    if (may_pass) ok[RL_PASS] = 1;
+    for (int a = 0; a < RL_NA; a++) nl += ok[a];
+    for (int k = 0; k < g.p[me].hand_n; k++) inhand |= g.p[me].hand[k] == card;
+    if (nl < 2 || !ts_sub_kind(kind) || nhist < 0 || nhist > TS_HIST || !inhand || actions < 1 ||
+        inc < 0 || inc >= RL_NA || !ok[inc]) {
+        out[3] = (float)(1000 * (bv_now() - t0));
+        return -2;
+    }
+    for (int i = 0; i < 2; i++) {
+        memset(&g_cont[i], 0, sizeof g_cont[i]);
+        g_cont[i].mode = RL_NET; g_cont[i].prm = prm; g_cont[i].nh = nh; g_cont[i].nf = nf; g_cont[i].temp = 1;
+    }
+    g_pre[me] = g; g_snap_card[me] = card; g_snap_known[me] = 0; g_nh[me] = nhist;
+    memcpy(g_hk[me], hk, sizeof(int) * nhist);
+    memcpy(g_ho[me], ho, sizeof(int) * nhist);
+    int keep_obs = g_obs, keep_kn = g_kn_on, keep_nmix = g_nmix;
+    g_obs = 1; g_kn_on = 0; g_known = 0; g_nmix = 0;
+    memset(g_pub, 0, sizeof g_pub);
+    g_roll_kind = DE_PLAY_ACTION;                      /* every legal option is a candidate */
+    g_sub_on = 1; g_sub_kind = kind;
+    g_deadline = t0 + secs;
+    float lg[RL_NA] = {0};
+    unsigned char caps[RL_NA];
+    uint64_t rng = seed | 1;
+    int K = bv_grade(&g_pre[me], me, ok, lg, inc, &rng, q, se, mask, caps);
+    g_deadline = 0;
+    g_sub_on = 0; g_roll_kind = DE_BUY;
+    g_obs = keep_obs; g_kn_on = keep_kn; g_nmix = keep_nmix;
+    out[2] = K > 0 ? K : 0;
+    out[3] = (float)(1000 * (bv_now() - t0));
+    return K;
+}
