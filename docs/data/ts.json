@@ -16,13 +16,13 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 16,
+"kingdoms": 23,
 "done": false,
 "target": 300,
-"score": 0.609375,
-"lo": 0.515625,
-"hi": 0.734375,
-"secs": 262.658125,
+"score": 0.6195652173913043,
+"lo": 0.532608695652174,
+"hi": 0.717391304347826,
+"secs": 260.6978260869565,
 "override_rate": null,
 "act_override_rate": null
 },
@@ -43,13 +43,13 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 11,
+"kingdoms": 17,
 "done": false,
 "target": 300,
-"score": 0.5681818181818182,
-"lo": 0.45454545454545453,
-"hi": 0.7045454545454546,
-"secs": 304.6859090909091,
+"score": 0.6029411764705882,
+"lo": 0.5,
+"hi": 0.7058823529411765,
+"secs": 338.82088235294117,
 "override_rate": null,
 "act_override_rate": null
 },
@@ -83,6 +83,27 @@
 "k1": "640",
 "leaf": "4",
 "alloc": "1",
+"margin": "0.02",
+"z": "2",
+"obs": "1",
+"opp": "c2",
+"stream": "ts1",
+"kingdoms": "200"
+},
+"kingdoms": 0,
+"done": false,
+"target": 200
+},
+{
+"name": "G_leaf4_k640_sub",
+"note": "G: B + the teacher also grades card choices inside my own actions (Workshop / Artisan / Remodel / Mine gains, trashes, Throne Room, Cellar)",
+"args": {
+"name": "G_leaf4_k640_sub",
+"act": "1",
+"k0": "640",
+"k1": "640",
+"leaf": "4",
+"sub": "1",
 "margin": "0.02",
 "z": "2",
 "obs": "1",
@@ -177,12 +198,12 @@
 "rows": [
 {
 "arm": "B_leaf4_k640",
-"kingdoms": 11,
-"diff": -0.1136,
-"lo": -0.2727,
-"hi": 0.0682,
-"arm_score": 0.5682,
-"base_score": 0.6818
+"kingdoms": 17,
+"diff": 0.0,
+"lo": -0.1471,
+"hi": 0.1471,
+"arm_score": 0.6029,
+"base_score": 0.6029
 }
 ]
 }
