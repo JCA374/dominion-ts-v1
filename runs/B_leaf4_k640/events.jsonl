@@ -1,0 +1,1 @@
+{"t": "2026-11-25 09:27", "kind": "run_start", "text": "B: value-net leaves after 4 turns, 5x the draws in about the same time", "args": {"name": "B_leaf4_k640", "act": "1", "k0": "640", "k1": "640", "leaf": "4", "margin": "0.02", "z": "2", "obs": "1", "opp": "c2", "stream": "ts1", "kingdoms": "300", "workers": "7"}}
