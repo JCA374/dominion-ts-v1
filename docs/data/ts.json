@@ -16,13 +16,13 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 11,
+"kingdoms": 16,
 "done": false,
 "target": 300,
-"score": 0.6818181818181818,
-"lo": 0.5454545454545454,
-"hi": 0.8181818181818182,
-"secs": 235.61954545454546,
+"score": 0.609375,
+"lo": 0.515625,
+"hi": 0.734375,
+"secs": 262.658125,
 "override_rate": null,
 "act_override_rate": null
 },
@@ -43,9 +43,15 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 4,
+"kingdoms": 11,
 "done": false,
-"target": 300
+"target": 300,
+"score": 0.5681818181818182,
+"lo": 0.45454545454545453,
+"hi": 0.7045454545454546,
+"secs": 304.6859090909091,
+"override_rate": null,
+"act_override_rate": null
 },
 {
 "name": "C_full_sh_k128",
@@ -168,7 +174,17 @@
 },
 "paired": {
 "base": "A_full_k128",
-"rows": []
+"rows": [
+{
+"arm": "B_leaf4_k640",
+"kingdoms": 11,
+"diff": -0.1136,
+"lo": -0.2727,
+"hi": 0.0682,
+"arm_score": 0.5682,
+"base_score": 0.6818
+}
+]
 }
 }
 }
