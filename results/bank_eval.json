@@ -559,5 +559,190 @@
    }
   },
   "best_gate": "m0.01_z0.0"
+ },
+ "leaf4_1600": {
+  "leaf": 4,
+  "alloc": 0,
+  "draws": 1600,
+  "secs_per_question": 11.643,
+  "gates": {
+   "m0.0_z0.0": {
+    "regret": 0.00492,
+    "regret_buy": 0.00997,
+    "regret_action": 0.00224,
+    "gain_vs_c2": 0.00392,
+    "gain_ci": [
+     0.00024,
+     0.00949
+    ],
+    "override_rate": 0.3389
+   },
+   "m0.0_z1.0": {
+    "regret": 0.00497,
+    "regret_buy": 0.0098,
+    "regret_action": 0.00242,
+    "gain_vs_c2": 0.00387,
+    "gain_ci": [
+     0.00019,
+     0.00938
+    ],
+    "override_rate": 0.2486
+   },
+   "m0.0_z2.0": {
+    "regret": 0.00502,
+    "regret_buy": 0.00906,
+    "regret_action": 0.00288,
+    "gain_vs_c2": 0.00382,
+    "gain_ci": [
+     0.00036,
+     0.00945
+    ],
+    "override_rate": 0.1944
+   },
+   "m0.0_z3.0": {
+    "regret": 0.0048,
+    "regret_buy": 0.00875,
+    "regret_action": 0.00272,
+    "gain_vs_c2": 0.00404,
+    "gain_ci": [
+     0.00069,
+     0.00949
+    ],
+    "override_rate": 0.1708
+   },
+   "m0.01_z0.0": {
+    "regret": 0.00482,
+    "regret_buy": 0.00985,
+    "regret_action": 0.00217,
+    "gain_vs_c2": 0.00402,
+    "gain_ci": [
+     0.00068,
+     0.00937
+    ],
+    "override_rate": 0.0861
+   },
+   "m0.01_z1.0": {
+    "regret": 0.00482,
+    "regret_buy": 0.00985,
+    "regret_action": 0.00217,
+    "gain_vs_c2": 0.00402,
+    "gain_ci": [
+     0.00068,
+     0.00937
+    ],
+    "override_rate": 0.0861
+   },
+   "m0.01_z2.0": {
+    "regret": 0.00512,
+    "regret_buy": 0.00985,
+    "regret_action": 0.00262,
+    "gain_vs_c2": 0.00372,
+    "gain_ci": [
+     0.00049,
+     0.00922
+    ],
+    "override_rate": 0.0792
+   },
+   "m0.01_z3.0": {
+    "regret": 0.0051,
+    "regret_buy": 0.00982,
+    "regret_action": 0.0026,
+    "gain_vs_c2": 0.00374,
+    "gain_ci": [
+     0.00048,
+     0.00922
+    ],
+    "override_rate": 0.0736
+   },
+   "m0.02_z0.0": {
+    "regret": 0.00502,
+    "regret_buy": 0.00962,
+    "regret_action": 0.00259,
+    "gain_vs_c2": 0.00382,
+    "gain_ci": [
+     0.00075,
+     0.00924
+    ],
+    "override_rate": 0.0444
+   },
+   "m0.02_z1.0": {
+    "regret": 0.00502,
+    "regret_buy": 0.00962,
+    "regret_action": 0.00259,
+    "gain_vs_c2": 0.00382,
+    "gain_ci": [
+     0.00075,
+     0.00924
+    ],
+    "override_rate": 0.0444
+   },
+   "m0.02_z2.0": {
+    "regret": 0.00511,
+    "regret_buy": 0.00962,
+    "regret_action": 0.00274,
+    "gain_vs_c2": 0.00373,
+    "gain_ci": [
+     0.00068,
+     0.00921
+    ],
+    "override_rate": 0.0431
+   },
+   "m0.02_z3.0": {
+    "regret": 0.00511,
+    "regret_buy": 0.00962,
+    "regret_action": 0.00274,
+    "gain_vs_c2": 0.00373,
+    "gain_ci": [
+     0.00068,
+     0.00921
+    ],
+    "override_rate": 0.0431
+   },
+   "m0.04_z0.0": {
+    "regret": 0.00565,
+    "regret_buy": 0.01055,
+    "regret_action": 0.00305,
+    "gain_vs_c2": 0.00319,
+    "gain_ci": [
+     0.00029,
+     0.00862
+    ],
+    "override_rate": 0.0194
+   },
+   "m0.04_z1.0": {
+    "regret": 0.00565,
+    "regret_buy": 0.01055,
+    "regret_action": 0.00305,
+    "gain_vs_c2": 0.00319,
+    "gain_ci": [
+     0.00029,
+     0.00862
+    ],
+    "override_rate": 0.0194
+   },
+   "m0.04_z2.0": {
+    "regret": 0.00565,
+    "regret_buy": 0.01055,
+    "regret_action": 0.00305,
+    "gain_vs_c2": 0.00319,
+    "gain_ci": [
+     0.00029,
+     0.00862
+    ],
+    "override_rate": 0.0194
+   },
+   "m0.04_z3.0": {
+    "regret": 0.00565,
+    "regret_buy": 0.01055,
+    "regret_action": 0.00305,
+    "gain_vs_c2": 0.00319,
+    "gain_ci": [
+     0.00029,
+     0.00862
+    ],
+    "override_rate": 0.0194
+   }
+  },
+  "best_gate": "m0.0_z3.0"
  }
 }
