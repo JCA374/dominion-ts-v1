@@ -12,21 +12,21 @@
   },
   {
    "arm": "G_full_k128_sub",
-   "kingdoms": 100,
-   "diff": 0.0525,
-   "lo": 0.005,
-   "hi": 0.1025,
-   "arm_score": 0.6675,
-   "base_score": 0.615
+   "kingdoms": 105,
+   "diff": 0.0548,
+   "lo": 0.0024,
+   "hi": 0.1071,
+   "arm_score": 0.6595,
+   "base_score": 0.6048
   },
   {
    "arm": "H_full_k320_m01z1_sub",
-   "kingdoms": 10,
+   "kingdoms": 11,
    "diff": 0.0,
-   "lo": -0.2,
-   "hi": 0.2,
-   "arm_score": 0.7,
-   "base_score": 0.7
+   "lo": -0.1818,
+   "hi": 0.1818,
+   "arm_score": 0.6818,
+   "base_score": 0.6818
   }
  ]
 }

@@ -16,13 +16,13 @@
 "kingdoms": "300",
 "workers": "7"
 },
-"kingdoms": 207,
+"kingdoms": 213,
 "done": false,
 "target": 300,
-"score": 0.6243961352657005,
-"lo": 0.5869263285024156,
-"hi": 0.6618357487922706,
-"secs": 309.54562801932366,
+"score": 0.6291079812206573,
+"lo": 0.5915492957746479,
+"hi": 0.6654929577464789,
+"secs": 315.3482863849765,
 "override_rate": 0.044,
 "act_override_rate": 0.0231
 },
@@ -69,13 +69,13 @@
 "stream": "ts1",
 "kingdoms": "200"
 },
-"kingdoms": 100,
+"kingdoms": 105,
 "done": false,
 "target": 200,
-"score": 0.6675,
-"lo": 0.615,
-"hi": 0.715,
-"secs": 474.4006,
+"score": 0.6595238095238095,
+"lo": 0.6071428571428571,
+"hi": 0.7095238095238096,
+"secs": 472.9799047619048,
 "override_rate": 0.0375,
 "act_override_rate": 0.0226
 },
@@ -95,13 +95,13 @@
 "stream": "ts1",
 "kingdoms": "200"
 },
-"kingdoms": 10,
+"kingdoms": 11,
 "done": false,
 "target": 200,
-"score": 0.7,
-"lo": 0.55,
-"hi": 0.85,
-"secs": 1426.892,
+"score": 0.6818181818181818,
+"lo": 0.5454545454545454,
+"hi": 0.8181818181818182,
+"secs": 1386.4836363636364,
 "override_rate": null,
 "act_override_rate": null
 }
@@ -1476,21 +1476,21 @@
 },
 {
 "arm": "G_full_k128_sub",
-"kingdoms": 100,
-"diff": 0.0525,
-"lo": 0.005,
-"hi": 0.1025,
-"arm_score": 0.6675,
-"base_score": 0.615
+"kingdoms": 105,
+"diff": 0.0548,
+"lo": 0.0024,
+"hi": 0.1071,
+"arm_score": 0.6595,
+"base_score": 0.6048
 },
 {
 "arm": "H_full_k320_m01z1_sub",
-"kingdoms": 10,
+"kingdoms": 11,
 "diff": 0.0,
-"lo": -0.2,
-"hi": 0.2,
-"arm_score": 0.7,
-"base_score": 0.7
+"lo": -0.1818,
+"hi": 0.1818,
+"arm_score": 0.6818,
+"base_score": 0.6818
 }
 ]
 }
