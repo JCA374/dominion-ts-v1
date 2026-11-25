@@ -69,28 +69,40 @@
   },
   "games_sha": "bf34edc0e8ed47bd"
  },
- "t": "2026-11-25 16:27",
+ "t": "2026-11-25 18:22",
  "done": false,
- "wall_secs": 16830,
+ "wall_secs": 23736,
  "latency_s": {
-  "decisions": 15503,
-  "p50": 3.0949,
-  "p95": 12.2252
+  "decisions": 21151,
+  "p50": 3.3028,
+  "p95": 13.2657
  },
  "action_overrides": {
-  "n": 196,
-  "mean_gain": 0.106,
+  "n": 249,
+  "mean_gain": 0.1074,
   "top_changes": [
    [
     "Merchant -> end actions",
     6
    ],
    [
+    "Throne Room -> end actions",
+    5
+   ],
+   [
+    "Village -> Remodel",
+    5
+   ],
+   [
+    "Village -> end actions",
+    5
+   ],
+   [
     "Vassal -> Artisan",
     5
    ],
    [
-    "Throne Room -> end actions",
+    "Throne Room -> Remodel",
     4
    ],
    [
@@ -102,7 +114,11 @@
     4
    ],
    [
-    "Village -> end actions",
+    "Cellar -> end actions",
+    4
+   ],
+   [
+    "Vassal -> end actions",
     4
    ],
    [
@@ -110,44 +126,28 @@
     4
    ],
    [
-    "Village -> Remodel",
-    3
-   ],
-   [
-    "Cellar -> end actions",
-    3
-   ],
-   [
-    "Village -> Militia",
-    3
-   ],
-   [
-    "Sentry -> Vassal",
-    3
-   ],
-   [
-    "Vassal -> end actions",
+    "Remodel -> end actions",
     3
    ]
   ]
  },
- "games": 148,
- "score": 0.6757,
+ "games": 200,
+ "score": 0.6675,
  "ci95": [
-  0.6182,
-  0.7399
+  0.6175,
+  0.7175
  ],
- "override_rate": 0.0388,
- "secs_per_game": 435.21,
- "rollouts": 8710528,
+ "override_rate": 0.0375,
+ "secs_per_game": 474.4,
+ "rollouts": 11942272,
  "capped": 0,
  "errors": 0,
- "pairs": 74,
- "unpaired_games": 2,
- "buy_overrides": 152,
- "buys": 3918,
- "act_graded": 8380,
- "act_overrides": 196,
- "act_override_rate": 0.0234,
- "score_uncapped_pairs": 0.6757
+ "pairs": 100,
+ "unpaired_games": 0,
+ "buy_overrides": 201,
+ "buys": 5367,
+ "act_graded": 11004,
+ "act_overrides": 249,
+ "act_override_rate": 0.0226,
+ "score_uncapped_pairs": 0.6675
 }
